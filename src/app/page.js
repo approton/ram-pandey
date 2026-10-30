@@ -1,69 +1,20 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import Image from 'next/image';
+import Link from 'next/link';
+import {expertise} from '@/data/profile';
+import Projects from '@/components/Projects';
+import ContactForm from '@/components/ContactForm';
+import styles from './page.module.css';
+export const metadata={alternates:{canonical:'/'}};
+export default function Home(){return <>
+<section className={styles.hero}><div className={styles.heroCopy}><div className="eyebrow"><span className="statusDot"/> OPEN TO MEANINGFUL OPPORTUNITIES</div><h1>Thoughtful code.<br/>Powerful systems.<br/><span>Human experiences.</span></h1><p className={styles.intro}>I’m <strong>Ram Niwash Pandey</strong>, a Senior Software Engineer turning complex challenges into intuitive, accessible digital products.</p><div className="buttonRow"><Link className="button primary" href="/projects/">Explore my work <span>↗</span></Link><a className="button secondary" href="#contact">Let’s build something <span>→</span></a></div><div className={styles.heroMeta}><span>BASED IN PUNE, INDIA</span><span className="metaLine"/><span>BUILDING FOR THE WEB</span></div></div><div className={styles.portraitScene}><div className={styles.orbit}/><div className={styles.portraitFrame}><Image src="/images/profile/ram-pandey.webp" alt="Ram Niwash Pandey in a dark suit" width={750} height={850} priority className={styles.portrait}/><div className={styles.portraitCaption}><span>RAM NIWASH PANDEY</span><small>Engineer. Problem solver. Builder.</small></div></div><div className={styles.codeBadge}><span className="accent">&lt;/&gt;</span> BUILT WITH INTENT</div><div className={styles.floatBadge}><span className="statusDot"/><div>Ideas → meaningful products<small>One thoughtful decision at a time.</small></div></div><span className={styles.coordinates}>18.5204° N &nbsp; 73.8567° E</span></div><a href="#overview" className={styles.scroll}>↓ <span>SCROLL TO EXPLORE</span></a><span className={styles.heroIndex}>PORTFOLIO / 2026</span></section>
+<div className="techStrip" aria-label="Core technologies"><span>REACT</span><i>✳</i><span>NEXT.JS</span><i>✳</i><span>JAVASCRIPT</span><i>✳</i><span>FRONTEND ARCHITECTURE</span><i>✳</i><span>AI-ENABLED APPLICATIONS</span></div>
+<section className="section" id="overview"><div className="sectionHeading"><div><span className="eyebrow">01 / THE ENGINEER BEHIND THE INTERFACE</span><h2>Great software starts<br/>with <em>better questions.</em></h2></div><Link className="textLink" href="/about/">More about me ↗</Link></div><div className="aboutGrid"><div className="statement">“Make the complex<br/>feel <span className="accent">simple.</span>”<small>MY APPROACH TO ENGINEERING</small></div><div><p className="lead">I build at the intersection of thoughtful design and dependable engineering.</p><p>From reusable enterprise components to modular frontend systems, my focus is on making software easier to use, maintain, and evolve. I care about the details people feel: a clear interaction, a fast response, a keyboard journey that simply works.</p><p>Based in Pune, with roots in Deoria, Uttar Pradesh, I bring approximately six years of engineering experience across frontend development, automation, and testing.</p><div className="miniStats"><div><strong>~6 years</strong><span>Engineering experience</span></div><div><strong>HCLSoftware</strong><span>Senior Software Engineer I · BigFix</span></div></div></div></div></section>
+<section className="section" id="expertise"><div className="sectionHeading"><div><span className="eyebrow">02 / WHAT I BRING TO THE TABLE</span><h2>Depth in the details.<br/><em>Clarity in the big picture.</em></h2></div><Link className="textLink" href="/expertise/">Explore expertise ↗</Link></div><div className="expertiseGrid">{expertise.map(([n,title,sub,body])=><article className="expertiseCard" key={n}><div className="cardTop"><span>{n}</span><span className="cardIcon">{['⌘','◇','◎','✳'][Number(n)-1]}</span></div><h3>{title}</h3><p className="cardSubtitle">{sub}</p><p>{body}</p></article>)}</div></section>
+<section className="section" id="work"><div className="sectionHeading"><div><span className="eyebrow">03 / IDEAS IN MOTION</span><h2>A few things<br/><em>I’m thinking about.</em></h2></div><Link className="textLink" href="/projects/">All project details ↗</Link></div><p className="sectionIntro">Personal engineering initiatives and product concepts. An honest look at what I’m exploring, with planned capabilities clearly distinguished from delivered work.</p><Projects/></section>
+<section className="section experienceSection"><div className="sectionHeading"><div><span className="eyebrow">04 / EXPERIENCE THAT SHAPES THE WORK</span><h2>Enterprise scale.<br/><em>Everyday attention to detail.</em></h2></div></div><div className="timeline"><div className="timelineLabel"><span className="statusDot"/> CURRENT ROLE</div><article><span className="eyebrow">HCLSOFTWARE · BIGFIX</span><h3>Senior Software Engineer I</h3><p className="lead">Building clearer interfaces for complex enterprise workflows.</p><p>My work spans reusable UI components, device management experiences, accessibility improvements, and maintainable React architecture. I collaborate through implementation planning, code reviews, and shared engineering decisions.</p><div className="tags"><span>Enterprise React</span><span>Reusable UI</span><span>Accessibility</span><span>Frontend architecture</span></div></article></div><div className="timeline"><div className="timelineLabel">THE FOUNDATION</div><article><h3>A broader engineering perspective</h3><p>Earlier experience in network engineering, enterprise automation, and Tosca-based end-to-end testing shaped how I think about reliability, systems, and the complete user journey.</p></article></div><Link className="textLink" href="/about/">Read the full story ↗</Link></section>
+<section className="section"><div className="sectionHeading"><div><span className="eyebrow">05 / HOW I WORK</span><h2>From a good question<br/><em>to a useful product.</em></h2></div><p className="sectionAside">A clear process creates space<br/>for better decisions.</p></div><div className="processGrid">{[['01','Understand','Start with people, the business problem, and the constraints. Define what useful actually looks like.'],['02','Architect','Choose clear boundaries, reusable patterns, and the simplest foundation that can grow.'],['03','Build','Translate the plan into purposeful interfaces, with accessibility and performance built in.'],['04','Refine','Test real journeys, listen to feedback, and improve the details that make a difference.']].map(([n,t,d])=><article key={n}><span className="processNumber">{n}</span><h3>{t}</h3><p>{d}</p></article>)}</div></section>
+<section className="section servicesSection"><span className="eyebrow">06 / LET’S MAKE SOMETHING USEFUL</span><div className="sectionHeading"><h2>Your next idea.<br/><em>A thoughtful engineering partner.</em></h2><p className="sectionAside">Open to discussing consulting,<br/>collaborations, and engineering roles.</p></div><div className="serviceList">{[['React & Next.js development','Modern websites, SaaS interfaces, and web applications.'],['Frontend architecture & design systems','Reusable foundations that help products and teams evolve.'],['Performance & accessibility','Faster, more inclusive experiences for the people using your product.'],['AI-enabled applications & automation','Practical tools that simplify workflows and keep people in control.']].map(([t,d],i)=><Link href="/contact/" key={t}><span className="eyebrow">0{i+1}</span><div><h3>{t}</h3><p>{d}</p></div><span className="serviceArrow">↗</span></Link>)}</div></section>
+<section className="quoteBand"><span>THE PRINCIPLE BEHIND THE PIXELS</span><blockquote>“Good engineering is felt in<br/>the things that <em>just work.</em>”</blockquote><p>A personal design principle, from the first interaction to the last line of code.</p></section>
+<section className="section contactSection" id="contact"><div><span className="eyebrow">07 / THE NEXT CHAPTER STARTS WITH HELLO</span><h2>Have something<br/>in mind?<br/><em>Let’s talk.</em></h2><p>Tell me what you’re building, the challenge you’re facing, or the opportunity you’d like to discuss.</p><a className="contactEmail" href="mailto:pandey.ram1397@gmail.com">pandey.ram1397@gmail.com ↗</a><a className="phone" href="tel:+918874913546">+91-8874913546</a><span className="eyebrow location">PUNE, MAHARASHTRA, INDIA</span></div><ContactForm/></section>
+</>}
 
-export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>
-            To get started, edit the{" "}
-            <code className={styles.code}>page.js</code> file.
-          </h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
-}

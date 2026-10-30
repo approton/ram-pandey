@@ -1,0 +1,3 @@
+import Projects from '@/components/Projects';
+export const metadata={title:'Projects',description:'Explore Vyom, ApplyPilot and Omnext: personal engineering initiatives and product concepts by Ram Pandey.',alternates:{canonical:'/projects/'}};
+export default function ProjectPage(){return <><section className="pageHero"><span className="eyebrow">PERSONAL EXPLORATIONS</span><h1>Ideas worth<br/><em>building toward.</em></h1><p>A collection of personal initiatives and product concepts. These are explorations, with implementation status and planned scope kept explicit.</p></section><section className="section detailProject"><Projects filterable/></section></>}

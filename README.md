@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ram Pandey portfolio
 
-## Getting Started
+Next.js App Router, React, JavaScript, CSS Modules and semantic HTML. Main content is statically rendered and exported to `dist/` for Sites hosting. No database, tracking, or mailing list.
 
-First, run the development server:
+## Development
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+`npm install`, `npm run dev`. Production: `npm run build`. Copy the generated `.next-production/` export to `dist/`. The deployment output is `dist/`.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Content and architecture
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- `src/data/profile.js`: editable profile, skills and honest project statuses.
+- `src/app/page.js`: long-form landing page, with section links and contact.
+- `src/app/about`, `expertise`, `projects`, `contact`: focused detail routes.
+- `src/components`: shared navigation/theme, project filtering, contact form.
+- `src/app/globals.css`: global tokens, light/dark themes, responsive layouts.
+- `src/app/page.module.css`: homepage portrait/depth composition.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Fonts are locally hosted. The supplied portrait is optimized to WebP. Decorative depth uses CSS rather than a heavy WebGL runtime. Reduced motion disables visual animation. No fabricated results, testimonials, or project deployments.
 
-## Learn More
+## Email activation — required
 
-To learn more about Next.js, take a look at the following resources:
+The contact form posts only name, email and message to FormSubmit for delivery to pandey.ram1397@gmail.com. The recipient must activate delivery through FormSubmit's verification email after the first submission. There is no Gmail password or API key in the app. Submission acceptance does not confirm inbox delivery. Provider-side spam prevention and rate limiting are controlled by FormSubmit; there is no custom server endpoint in this static export. The form shows network/provider errors and provides a direct mailto fallback. No real message was sent during development.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+If a first-party API is later needed, remove static export, implement a server-only transactional provider adapter with validation, request-size limits and distributed rate limiting. Do not put provider credentials in client code.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Launch checklist
 
-## Deploy on Vercel
+1. Verify FormSubmit recipient activation, then test actual delivery with owner consent.
+2. Review the professional facts and project statuses in the content config.
+3. Update canonical origin, sitemap, robots and structured data for a custom domain.
+4. Submit sitemap.xml in Google Search Console and Bing Webmaster Tools after the Site is public. Verify domain ownership through DNS.
+5. Check keyboard navigation, both themes, mobile layouts and reduced-motion preferences.
+6. Measure Core Web Vitals after launch; no performance score is claimed without measurement.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Sites start owner-private. Search engines and external visitors require a subsequent access change. Source does not include an invented resume or empty blog pages.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Optional evolution
+
+Keep this as one deployment. If teams later need independent releases, extract shared UI/tokens and route-based feature apps into a monorepo. Verify framework compatibility before adopting Module Federation.
+

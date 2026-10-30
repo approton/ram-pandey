@@ -1,1 +1,95 @@
-export default function Icon({name,size=20,...props}){const paths={arrow:<><path d="M7 17 17 7M7 7h10v10"/></>,mail:<><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m3 7 9 6 9-6"/></>,phone:<path d="M7 3H4a1 1 0 0 0-1 1c0 9.4 7.6 17 17 17a1 1 0 0 0 1-1v-3l-5-2-2 2a14 14 0 0 1-7-7l2-2-2-5Z"/>,github:<><path d="M9 19c-4 1-4-2-6-2m12 4v-3.4c0-1 .1-1.4-.5-2 3.3-.4 6.5-1.6 6.5-7a5.5 5.5 0 0 0-1.5-3.8A5 5 0 0 0 19.4 1S18 1 15 2.5a13 13 0 0 0-6 0C6 1 4.6 1 4.6 1a5 5 0 0 0-.1 3.8A5.5 5.5 0 0 0 3 8.6c0 5.4 3.2 6.6 6.5 7-.5.5-.6 1-.5 2V21"/></>,linkedin:<><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7 10v7m0-10v.1M11 17v-7m0 3c0-4 6-4 6 0v4"/></>,instagram:<><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></>,sun:<><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></>,moon:<path d="M21 13A9 9 0 0 1 11 3a9 9 0 1 0 10 10Z"/>,code:<><path d="m8 6-6 6 6 6m8-12 6 6-6 6M14 3l-4 18"/></>,layers:<><path d="m12 3 10 6-10 6L2 9l10-6Zm-10 12 10 6 10-6M2 12l10 6 10-6"/></>,shield:<><path d="m12 2 9 4v6c0 6-9 10-9 10S3 18 3 12V6l9-4Z"/><path d="m8 12 3 3 5-6"/></>,spark:<><path d="m12 2 3 7 7 3-7 3-3 7-3-7-7-3 7-3 3-7Z"/></>,search:<><circle cx="10" cy="10" r="6"/><path d="m15 15 6 6"/></>,menu:<path d="M4 6h16M4 12h16M4 18h16"/>,close:<path d="m6 6 12 12M6 18 18 6"/>,location:<><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></>,check:<path d="m5 12 4 4L19 6"/>};return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>{paths[name]||paths.arrow}</svg>}
+export default function Icon({ name, size = 20, ...props }) {
+  const paths = {
+    arrow: (
+      <>
+        <path d="M7 17 17 7M7 7h10v10" />
+      </>
+    ),
+    mail: (
+      <>
+        <rect x="3" y="5" width="18" height="14" rx="3" />
+        <path d="m3 7 9 6 9-6" />
+      </>
+    ),
+    phone: (
+      <path d="M7 3H4a1 1 0 0 0-1 1c0 9.4 7.6 17 17 17a1 1 0 0 0 1-1v-3l-5-2-2 2a14 14 0 0 1-7-7l2-2-2-5Z" />
+    ),
+    github: (
+      <>
+        <path d="M9 19c-4 1-4-2-6-2m12 4v-3.4c0-1 .1-1.4-.5-2 3.3-.4 6.5-1.6 6.5-7a5.5 5.5 0 0 0-1.5-3.8A5 5 0 0 0 19.4 1S18 1 15 2.5a13 13 0 0 0-6 0C6 1 4.6 1 4.6 1a5 5 0 0 0-.1 3.8A5.5 5.5 0 0 0 3 8.6c0 5.4 3.2 6.6 6.5 7-.5.5-.6 1-.5 2V21" />
+      </>
+    ),
+    linkedin: (
+      <>
+        <rect x="3" y="3" width="18" height="18" rx="3" />
+        <path d="M7 10v7m0-10v.1M11 17v-7m0 3c0-4 6-4 6 0v4" />
+      </>
+    ),
+    instagram: (
+      <>
+        <rect x="3" y="3" width="18" height="18" rx="5" />
+        <circle cx="12" cy="12" r="4" />
+        <path d="M17.5 6.5h.01" />
+      </>
+    ),
+    sun: (
+      <>
+        <circle cx="12" cy="12" r="4" />
+        <path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5" />
+      </>
+    ),
+    moon: <path d="M21 13A9 9 0 0 1 11 3a9 9 0 1 0 10 10Z" />,
+    code: (
+      <>
+        <path d="m8 6-6 6 6 6m8-12 6 6-6 6M14 3l-4 18" />
+      </>
+    ),
+    layers: (
+      <>
+        <path d="m12 3 10 6-10 6L2 9l10-6Zm-10 12 10 6 10-6M2 12l10 6 10-6" />
+      </>
+    ),
+    shield: (
+      <>
+        <path d="m12 2 9 4v6c0 6-9 10-9 10S3 18 3 12V6l9-4Z" />
+        <path d="m8 12 3 3 5-6" />
+      </>
+    ),
+    spark: (
+      <>
+        <path d="m12 2 3 7 7 3-7 3-3 7-3-7-7-3 7-3 3-7Z" />
+      </>
+    ),
+    search: (
+      <>
+        <circle cx="10" cy="10" r="6" />
+        <path d="m15 15 6 6" />
+      </>
+    ),
+    menu: <path d="M4 6h16M4 12h16M4 18h16" />,
+    close: <path d="m6 6 12 12M6 18 18 6" />,
+    location: (
+      <>
+        <path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z" />
+        <circle cx="12" cy="10" r="3" />
+      </>
+    ),
+    check: <path d="m5 12 4 4L19 6" />,
+  };
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      {...props}
+    >
+      {paths[name] || paths.arrow}
+    </svg>
+  );
+}

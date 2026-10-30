@@ -38,3 +38,12 @@ Sites start owner-private. Search engines and external visitors require a subseq
 
 Keep this as one deployment. If teams later need independent releases, extract shared UI/tokens and route-based feature apps into a monorepo. Verify framework compatibility before adopting Module Federation.
 
+## Spatial redesign
+
+The homepage uses a custom WebGL torus-knot mesh with lighting and pointer rotation. Its animation can be paused; reduced-motion preferences render a still frame. WebGL-unavailable devices receive a CSS fallback. GPU pixel density is capped at 1.5, and offscreen/hidden scenes avoid rendering work.
+
+The shared UI uses translucent layers, backdrop blur, a sticky floating header, reading progress, and pointer-reactive CSS perspective. Fine-pointer hover effects are disabled for reduced motion and touch input. Scattered decorative words stay outside the main text flow and out of the accessibility tree.
+
+Navigation uses full route links. The homepage is a long overview; About, Expertise, Services, Contact, the searchable Projects workspace, and five project detail routes are separate documents. The Watcher and Income Tax Calculator were added using owner-supplied descriptions. Omnext links to https://omnext.vercel.app and the calculator links to https://calculate-tax-nine.vercel.app.
+
+Formatting: `npm run format` writes Prettier output for project sources and configuration. `npm run format:check` validates it. Generated builds, dependencies and binary assets are excluded.

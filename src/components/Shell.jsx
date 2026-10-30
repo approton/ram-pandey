@@ -1,12 +1,144 @@
 'use client';
-import {useEffect,useRef,useState} from 'react';
-import {usePathname} from 'next/navigation';
+import { useEffect, useRef, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import Icon from './Icon';
-import {SocialLinks} from './ContactActions';
-export default function Shell({children}){
- const path=usePathname();const [theme,setTheme]=useState('dark');const [open,setOpen]=useState(false);const [scrolled,setScrolled]=useState(false);const progress=useRef(null);const menu=useRef(null);
- useEffect(()=>{const saved=localStorage.getItem('ram-theme');const t=saved || (matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');setTheme(t);document.documentElement.dataset.theme=t;const onScroll=()=>{setScrolled(scrollY>30);const max=document.documentElement.scrollHeight-innerHeight;if(progress.current)progress.current.style.transform=`scaleX(${max>0?scrollY/max:0})`};addEventListener('scroll',onScroll,{passive:true});return()=>removeEventListener('scroll',onScroll)},[]);
- useEffect(()=>{const escape=e=>{if(e.key==='Escape'){setOpen(false);menu.current?.focus()}};if(open)addEventListener('keydown',escape);return()=>removeEventListener('keydown',escape)},[open]);
- function toggle(){const next=theme==='dark'?'light':'dark';setTheme(next);document.documentElement.dataset.theme=next;localStorage.setItem('ram-theme',next)}
- return <><div className="ambient" aria-hidden="true"><div className="ambientOne"/><div className="ambientTwo"/><div className="ambientGrid"/></div><div className="readingProgress" ref={progress}/><a className="skip" href="#main">Skip to content</a><header className={`header ${scrolled?'headerScrolled':''}`}><a href="/" className="brand" aria-label="Ram Pandey home"><span className="monogram">r<span>p</span><i>·</i></span><span>RAM PANDEY<span className="brandSubtitle">ENGINEERING WITH INTENT</span></span></a><nav id="main-navigation" aria-label="Main navigation" className={open?'nav navOpen':'nav'}>{[['/','Home'],['/about/','About'],['/expertise/','Expertise'],['/projects/','Projects'],['/services/','Services']].map(([url,label])=><a key={url} href={url} onClick={()=>setOpen(false)} aria-current={url==='/'?path==='/'?'page':undefined:path.startsWith(url)?'page':undefined}>{label}</a>)}</nav><div className="headerActions"><button className="theme" onClick={toggle} aria-label={`Switch to ${theme==='dark'?'light':'dark'} theme`}><Icon name={theme==='dark'?'sun':'moon'}/></button><a className="smallCta" href="/contact/">Let’s talk <Icon name="arrow" size={17}/></a><button ref={menu} className="menu" aria-label={open?'Close navigation':'Open navigation'} aria-controls="main-navigation" aria-expanded={open} onClick={()=>setOpen(!open)}><Icon name={open?'close':'menu'}/></button></div></header><main id="main">{children}</main><footer><div className="footerTop"><div><a href="/" className="footerName">Ram Pandey<span className="accent">.</span></a><p>Thoughtful systems. Meaningful experiences.</p></div><div className="footerNav"><a href="/about/">About</a><a href="/projects/">Projects</a><a href="/services/">Services</a><a href="/contact/">Contact</a></div><SocialLinks/></div><div className="footerBottom"><span>© {new Date().getFullYear()} Ram Niwash Pandey</span><span>Designed with purpose. Engineered with precision.</span><a href="#main">Back to top ↑</a></div></footer></>
+import SpatialEffects from './SpatialEffects';
+import { SocialLinks } from './ContactActions';
+export default function Shell({ children }) {
+  const path = usePathname();
+  const [theme, setTheme] = useState('dark');
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const progress = useRef(null);
+  const menu = useRef(null);
+  useEffect(() => {
+    const saved = localStorage.getItem('ram-theme');
+    const t = saved || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    setTheme(t);
+    document.documentElement.dataset.theme = t;
+    const onScroll = () => {
+      setScrolled(scrollY > 30);
+      const max = document.documentElement.scrollHeight - innerHeight;
+      if (progress.current)
+        progress.current.style.transform = `scaleX(${max > 0 ? scrollY / max : 0})`;
+    };
+    addEventListener('scroll', onScroll, { passive: true });
+    return () => removeEventListener('scroll', onScroll);
+  }, []);
+  useEffect(() => {
+    const escape = (e) => {
+      if (e.key === 'Escape') {
+        setOpen(false);
+        menu.current?.focus();
+      }
+    };
+    if (open) addEventListener('keydown', escape);
+    return () => removeEventListener('keydown', escape);
+  }, [open]);
+  function toggle() {
+    const next = theme === 'dark' ? 'light' : 'dark';
+    setTheme(next);
+    document.documentElement.dataset.theme = next;
+    localStorage.setItem('ram-theme', next);
+  }
+  return (
+    <>
+      <SpatialEffects />
+      <div className="ambient" aria-hidden="true">
+        <div className="ambientOne" />
+        <div className="ambientTwo" />
+        <div className="ambientGrid" />
+      </div>
+      <div className="readingProgress" ref={progress} />
+      <a className="skip" href="#main">
+        Skip to content
+      </a>
+      <header className={`header ${scrolled ? 'headerScrolled' : ''}`}>
+        <a href="/" className="brand" aria-label="Ram Pandey home">
+          <span className="monogram">
+            r<span>p</span>
+            <i>·</i>
+          </span>
+          <span>
+            RAM PANDEY<span className="brandSubtitle">ENGINEERING WITH INTENT</span>
+          </span>
+        </a>
+        <nav
+          id="main-navigation"
+          aria-label="Main navigation"
+          className={open ? 'nav navOpen' : 'nav'}
+        >
+          {[
+            ['/', 'Home'],
+            ['/about/', 'About'],
+            ['/expertise/', 'Expertise'],
+            ['/projects/', 'Projects'],
+            ['/services/', 'Services'],
+          ].map(([url, label]) => (
+            <a
+              key={url}
+              href={url}
+              onClick={() => setOpen(false)}
+              aria-current={
+                url === '/'
+                  ? path === '/'
+                    ? 'page'
+                    : undefined
+                  : path.startsWith(url)
+                    ? 'page'
+                    : undefined
+              }
+            >
+              {label}
+            </a>
+          ))}
+        </nav>
+        <div className="headerActions">
+          <button
+            className="theme"
+            onClick={toggle}
+            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
+          >
+            <Icon name={theme === 'dark' ? 'sun' : 'moon'} />
+          </button>
+          <a className="smallCta" href="/contact/">
+            Let’s talk <Icon name="arrow" size={17} />
+          </a>
+          <button
+            ref={menu}
+            className="menu"
+            aria-label={open ? 'Close navigation' : 'Open navigation'}
+            aria-controls="main-navigation"
+            aria-expanded={open}
+            onClick={() => setOpen(!open)}
+          >
+            <Icon name={open ? 'close' : 'menu'} />
+          </button>
+        </div>
+      </header>
+      <main id="main">{children}</main>
+      <footer>
+        <div className="footerTop">
+          <div>
+            <a href="/" className="footerName">
+              Ram Pandey<span className="accent">.</span>
+            </a>
+            <p>Thoughtful systems. Meaningful experiences.</p>
+          </div>
+          <div className="footerNav">
+            <a href="/about/">About</a>
+            <a href="/projects/">Projects</a>
+            <a href="/services/">Services</a>
+            <a href="/contact/">Contact</a>
+          </div>
+          <SocialLinks />
+        </div>
+        <div className="footerBottom">
+          <span>© {new Date().getFullYear()} Ram Niwash Pandey</span>
+          <span>Designed with purpose. Engineered with precision.</span>
+          <a href="#main">Back to top ↑</a>
+        </div>
+      </footer>
+    </>
+  );
 }

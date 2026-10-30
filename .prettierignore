@@ -1,0 +1,8 @@
+node_modules
+.next
+.next-production
+dist
+out
+.sites-runtime
+public/images
+*.tar.gz

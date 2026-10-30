@@ -1,4 +1,46 @@
 import Icon from './Icon';
-import {profile} from '@/data/profile';
-export function SocialLinks(){return <div className="socialIcons">{['github','linkedin','instagram'].map(name=><a key={name} href={profile[name]} target="_blank" rel="noopener noreferrer" aria-label={`Ram Pandey on ${name==='github'?'GitHub':name==='linkedin'?'LinkedIn':'Instagram'}`} title={name==='github'?'GitHub':name==='linkedin'?'LinkedIn':'Instagram'}><Icon name={name} size={21}/></a>)}</div>}
-export default function ContactActions({compact=false}){return <div className={`contactActions ${compact?'compact':''}`}><a href={`mailto:${profile.email}`} className="contactAction"><span className="actionIcon"><Icon name="mail" size={23}/></span><span><strong>Email me</strong>{!compact&&<small>{profile.email}</small>}</span><Icon name="arrow" size={18}/></a><a href="tel:+918874913546" className="contactAction"><span className="actionIcon"><Icon name="phone" size={23}/></span><span><strong>Call me</strong>{!compact&&<small>{profile.phone}</small>}</span><Icon name="arrow" size={18}/></a></div>}
+import { profile } from '@/data/profile';
+export function SocialLinks() {
+  return (
+    <div className="socialIcons">
+      {['github', 'linkedin', 'instagram'].map((name) => (
+        <a
+          key={name}
+          href={profile[name]}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Ram Pandey on ${name === 'github' ? 'GitHub' : name === 'linkedin' ? 'LinkedIn' : 'Instagram'}`}
+          title={name === 'github' ? 'GitHub' : name === 'linkedin' ? 'LinkedIn' : 'Instagram'}
+        >
+          <Icon name={name} size={21} />
+        </a>
+      ))}
+    </div>
+  );
+}
+export default function ContactActions({ compact = false }) {
+  return (
+    <div className={`contactActions ${compact ? 'compact' : ''}`}>
+      <a href={`mailto:${profile.email}`} className="contactAction">
+        <span className="actionIcon">
+          <Icon name="mail" size={23} />
+        </span>
+        <span>
+          <strong>Email me</strong>
+          {!compact && <small>{profile.email}</small>}
+        </span>
+        <Icon name="arrow" size={18} />
+      </a>
+      <a href="tel:+918874913546" className="contactAction">
+        <span className="actionIcon">
+          <Icon name="phone" size={23} />
+        </span>
+        <span>
+          <strong>Call me</strong>
+          {!compact && <small>{profile.phone}</small>}
+        </span>
+        <Icon name="arrow" size={18} />
+      </a>
+    </div>
+  );
+}

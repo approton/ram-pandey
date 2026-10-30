@@ -1,10 +1,10 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import Icon from './Icon';
-import SpatialEffects from './SpatialEffects';
-import ThemeToggle from './ThemeToggle';
-import { SocialLinks } from './ContactActions';
+import Icon from '../Icon/Icon';
+import SpatialEffects from '../SpatialEffects/SpatialEffects';
+import ThemeToggle from '../ThemeToggle/ThemeToggle';
+import { SocialLinks } from '../ContactActions/ContactActions';
 export default function Shell({ children }) {
   const path = usePathname();
   const mobileNavigation = useRef(null);

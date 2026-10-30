@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import { projects } from '@/data/profile';
-import { ProjectVisual } from '@/components/Projects';
-import Icon from '@/components/Icon';
+import { ProjectVisual } from '@/components/Projects/Projects';
+import Icon from '@/components/Icon/Icon';
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
 }

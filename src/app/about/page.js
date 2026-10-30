@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import Icon from '@/components/Icon';
-import ContactActions, { SocialLinks } from '@/components/ContactActions';
+import Icon from '@/components/Icon/Icon';
+import ContactActions, { SocialLinks } from '@/components/ContactActions/ContactActions';
 export const metadata = {
   title: 'About — The Engineer, the Work, the Journey',
   description:

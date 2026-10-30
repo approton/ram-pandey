@@ -1,6 +1,6 @@
 'use client';
 import { useId, useRef, useState } from 'react';
-import Icon from './Icon';
+import Icon from '../Icon/Icon';
 import styles from './ContactForm.module.css';
 function Line({ number, children, active = false }) {
   return (

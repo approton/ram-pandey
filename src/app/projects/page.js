@@ -1,5 +1,5 @@
-import Projects from '@/components/Projects';
-import Icon from '@/components/Icon';
+import Projects from '@/components/Projects/Projects';
+import Icon from '@/components/Icon/Icon';
 export const metadata = {
   title: 'Projects — The Engineering Workspace',
   description:

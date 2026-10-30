@@ -641,3 +641,39 @@
     font-size: 9px;
   }
 }
+.profileSlot {
+  position: absolute;
+  bottom: 70px;
+  left: 5%;
+  right: 0;
+  z-index: 20;
+  transform: none;
+  filter: none;
+  isolation: isolate;
+}
+.visualStage {
+  transform-style: flat;
+}
+.hero {
+  overflow: visible;
+}
+@media (max-width: 1100px) {
+  .profileSlot {
+    left: 0;
+  }
+}
+@media (max-width: 800px) {
+  .profileSlot {
+    position: relative;
+    inset: auto;
+    order: 2;
+    width: 100%;
+    transform: none;
+  }
+  .visualStage {
+    overflow: visible;
+  }
+  .hero {
+    overflow: clip;
+  }
+}

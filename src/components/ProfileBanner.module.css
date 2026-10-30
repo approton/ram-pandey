@@ -1,0 +1,391 @@
+.banner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  padding: 15px;
+  border: 1px solid var(--glassEdge);
+  border-radius: 20px;
+  background: color-mix(in srgb, var(--surface) 94%, transparent);
+  box-shadow:
+    0 20px 55px #0003,
+    inset 0 1px 0 #ffffff12;
+  transform: none;
+  animation: none;
+  filter: none;
+  isolation: isolate;
+}
+.photoButton {
+  position: relative;
+  display: block;
+  width: 86px;
+  height: 100px;
+  flex: 0 0 86px;
+  overflow: hidden;
+  padding: 0;
+  border: 1px solid var(--glassEdge);
+  border-radius: 12px;
+  background: var(--surface);
+  cursor: zoom-in;
+  transform: none;
+  filter: none;
+}
+.thumbnail {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 28%;
+  filter: none;
+  transform: none;
+  opacity: 1;
+  image-rendering: auto;
+}
+.expand {
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  display: grid;
+  place-items: center;
+  width: 21px;
+  height: 21px;
+  border-radius: 6px;
+  background: #10182adb;
+  color: #fff;
+}
+.detailsButton {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+  color: var(--text);
+  background: transparent;
+  border: 0;
+  border-radius: 6px;
+  padding: 8px 0;
+  line-height: 1.5;
+  cursor: pointer;
+}
+.detailsButton strong {
+  display: block;
+  font-size: 16px;
+  font-weight: 550;
+  letter-spacing: -0.025em;
+}
+.detailsButton > span:not(.hint) {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 3px;
+}
+.detailsButton small {
+  display: block;
+  font-size: 10px;
+  color: var(--accent);
+  margin-top: 5px;
+}
+.hint {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 9px;
+  color: var(--muted);
+  margin-top: 9px;
+}
+.dot {
+  margin-right: 6px;
+}
+.preview {
+  position: absolute;
+  bottom: calc(100% + 14px);
+  z-index: 30;
+  border: 1px solid var(--glassEdge);
+  border-radius: 20px;
+  background: var(--surface);
+  box-shadow: 0 30px 90px #0007;
+  animation: appear 0.16s ease-out;
+  overflow: hidden;
+}
+.preview:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -17px;
+  height: 18px;
+}
+.photoPreview {
+  left: 0;
+  width: min(340px, 100%);
+  padding: 10px;
+}
+.previewImage {
+  display: block;
+  object-fit: cover;
+  object-position: center 27%;
+  filter: none;
+  transform: none;
+  opacity: 1;
+}
+.photoPreview .previewImage {
+  width: 100%;
+  height: 315px;
+  border-radius: 12px;
+}
+.previewText {
+  padding: 16px 13px 9px;
+}
+.eyebrow {
+  font:
+    8px/1.7 var(--font-geist-mono),
+    monospace;
+  letter-spacing: 0.09em;
+  color: var(--accent);
+}
+.previewText h3 {
+  font-size: 22px;
+  line-height: 1.3;
+  margin: 8px 0 7px;
+  letter-spacing: -0.035em;
+}
+.photoNote {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 0;
+}
+.close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #111a2be8;
+  color: #fff;
+  border: 1px solid #ffffff50;
+  z-index: 2;
+}
+.detailsPreview {
+  right: 0;
+  width: min(460px, calc(100vw - 50px));
+  display: grid;
+  grid-template-columns: 145px minmax(0, 1fr);
+  padding: 12px;
+  gap: 5px;
+}
+.detailsPreview .previewImage {
+  width: 145px;
+  height: 100%;
+  min-height: 245px;
+  max-height: 310px;
+  border-radius: 12px;
+}
+.detailsPreview .previewText {
+  padding: 16px 12px;
+}
+.detailsPreview .previewText h3 {
+  font-size: 21px;
+  margin-top: 10px;
+  padding-right: 15px;
+}
+.role {
+  font-size: 12px;
+  color: var(--text);
+  line-height: 1.7;
+  margin-bottom: 12px;
+}
+.location {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  color: var(--muted);
+  font-size: 11px;
+}
+.description {
+  font-size: 12px;
+  line-height: 1.75;
+  margin: 14px 0;
+}
+.profileLink {
+  display: inline-flex;
+  gap: 12px;
+  align-items: center;
+  color: var(--accent);
+  font-size: 12px;
+  padding: 8px 0;
+}
+.profileLink:hover {
+  color: var(--accent2);
+}
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (max-width: 1100px) {
+  .banner {
+    gap: 13px;
+  }
+  .detailsButton strong {
+    font-size: 15px;
+  }
+}
+@media (max-width: 800px) {
+  .banner {
+    padding: 16px;
+    border-radius: 17px;
+    gap: 14px;
+  }
+  .photoButton {
+    width: 76px;
+    flex-basis: 76px;
+    height: 90px;
+  }
+  .detailsButton strong {
+    font-size: 15px;
+  }
+  .detailsPreview {
+    width: 100%;
+    grid-template-columns: 105px minmax(0, 1fr);
+    padding: 10px;
+    gap: 3px;
+  }
+  .detailsPreview .previewImage {
+    width: 105px;
+    min-height: 245px;
+    max-height: 320px;
+  }
+  .detailsPreview .previewText {
+    padding: 13px 9px;
+  }
+  .detailsPreview .previewText h3 {
+    font-size: 18px;
+  }
+  .detailsPreview .eyebrow {
+    font-size: 7px;
+  }
+  .photoPreview {
+    width: 100%;
+    max-width: 340px;
+  }
+  .photoPreview .previewImage {
+    height: 300px;
+  }
+  .dot {
+    display: none;
+  }
+}
+@media (max-width: 360px) {
+  .banner {
+    padding: 12px;
+    gap: 12px;
+  }
+  .photoButton {
+    width: 64px;
+    flex-basis: 64px;
+    height: 80px;
+  }
+  .detailsButton strong {
+    font-size: 13px;
+  }
+  .detailsButton > span:not(.hint) {
+    font-size: 10px;
+  }
+  .detailsButton small {
+    font-size: 9px;
+  }
+  .hint {
+    font-size: 8px;
+  }
+  .detailsPreview {
+    grid-template-columns: 85px minmax(0, 1fr);
+    padding: 8px;
+  }
+  .detailsPreview .previewImage {
+    width: 85px;
+    min-height: 270px;
+  }
+  .detailsPreview .previewText {
+    padding: 12px 7px;
+  }
+  .detailsPreview .previewText h3 {
+    font-size: 16px;
+  }
+  .role,
+  .description {
+    font-size: 10px;
+  }
+  .location,
+  .profileLink {
+    font-size: 10px;
+  }
+  .photoPreview .previewImage {
+    height: 270px;
+  }
+  .previewText h3 {
+    font-size: 20px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .preview {
+    animation: none;
+  }
+}
+.banner[data-expanded='true']:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 100%;
+  height: 17px;
+  z-index: 29;
+}
+/* Touch previews expand in flow so the photo is never covered by the sticky header. */
+@media (max-width: 800px) {
+  .banner {
+    display: grid;
+    grid-template-columns: 76px minmax(0, 1fr);
+    align-items: center;
+  }
+  .photoButton {
+    grid-column: 1;
+  }
+  .detailsButton {
+    grid-column: 2;
+  }
+  .preview {
+    position: relative;
+    inset: auto;
+    grid-column: 1/-1;
+    width: 100%;
+    max-width: none;
+    margin-top: 8px;
+  }
+  .photoPreview {
+    padding: 9px;
+  }
+  .photoPreview .previewImage {
+    height: 320px;
+  }
+  .detailsPreview {
+    grid-template-columns: 105px minmax(0, 1fr);
+  }
+  .banner[data-expanded='true']:before {
+    display: none;
+  }
+}
+@media (max-width: 360px) {
+  .banner {
+    grid-template-columns: 64px minmax(0, 1fr);
+  }
+  .photoPreview .previewImage {
+    height: 270px;
+  }
+  .detailsPreview {
+    grid-template-columns: 85px minmax(0, 1fr);
+  }
+}

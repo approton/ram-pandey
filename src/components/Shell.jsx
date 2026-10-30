@@ -3,23 +3,15 @@ import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Icon from './Icon';
 import SpatialEffects from './SpatialEffects';
+import ThemeToggle from './ThemeToggle';
 import { SocialLinks } from './ContactActions';
 export default function Shell({ children }) {
   const path = usePathname();
-  const [theme, setTheme] = useState('dark');
   const mobileNavigation = useRef(null);
   const [scrolled, setScrolled] = useState(false);
   const progress = useRef(null);
 
   useEffect(() => {
-    let saved;
-    try {
-      saved = localStorage.getItem('ram-theme');
-    } catch {}
-    if (saved !== 'light' && saved !== 'dark') saved = null;
-    const t = saved || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-    setTheme(t);
-    document.documentElement.dataset.theme = t;
     const onScroll = () => {
       setScrolled(scrollY > 30);
       const max = document.documentElement.scrollHeight - innerHeight;
@@ -45,14 +37,6 @@ export default function Shell({ children }) {
       removeEventListener('pointerdown', close);
     };
   }, []);
-  function toggle() {
-    const next = theme === 'dark' ? 'light' : 'dark';
-    setTheme(next);
-    document.documentElement.dataset.theme = next;
-    try {
-      localStorage.setItem('ram-theme', next);
-    } catch {}
-  }
   return (
     <>
       <SpatialEffects />
@@ -102,15 +86,7 @@ export default function Shell({ children }) {
           ))}
         </nav>
         <div className="headerActions">
-          <button
-            className="theme"
-            type="button"
-            onClick={toggle}
-            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
-          >
-            <Icon name={theme === 'dark' ? 'sun' : 'moon'} />
-            <span className="controlLabel">Theme</span>
-          </button>
+          <ThemeToggle />
           <a className="smallCta" href="/contact/">
             Let’s talk <Icon name="arrow" size={17} />
           </a>

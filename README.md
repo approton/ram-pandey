@@ -53,3 +53,9 @@ Formatting: `npm run format` writes Prettier output for project sources and conf
 The shared contact form is an accessible HTML-styled IDE with editable name, email and message controls, line numbers, syntax colors, a live React-rendered preview, character count, and Ctrl/Cmd+Enter submission. Preview content is escaped text, not executable HTML. Native required, length and email constraints apply before the existing FormSubmit request. Provider acceptance is distinguished from delivery, and requests have a 20-second timeout.
 
 Mobile navigation uses native details/summary so opening the menu does not depend on React hydration. Theme storage is optional and guarded. On narrow screens the scene has an explicit 310px height, followed by the portrait and a separate caption; decorative labels are reduced to avoid overlaps.
+
+## Portrait and theme controls
+
+The homepage portrait banner uses the original supplied PNG without saturation filters, animated transforms, or backdrop blur on the image. Its photo and details are separate keyboard-focusable controls. Photo hover/focus opens a larger portrait; details hover/focus opens a medium portrait with professional context. Taps pin a preview; close, Escape, or clicking outside dismisses it.
+
+The theme control is a native checkbox switch with CSS `:has()` theme tokens. Native checking changes the visible theme independently of React click handling; JavaScript initializes and saves the preference where localStorage is available.

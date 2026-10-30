@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import ProfileBanner from '@/components/ProfileBanner';
 import Scene from '@/components/Scene';
 import Icon from '@/components/Icon';
 import ContactActions, { SocialLinks } from '@/components/ContactActions';
@@ -55,20 +55,8 @@ export default function Home() {
             <span>think → build</span>
           </div>
           <Scene />
-          <div className={styles.portraitGlass}>
-            <Image
-              src="/images/profile/ram-pandey.webp"
-              alt="Ram Niwash Pandey, Senior Software Engineer"
-              width={260}
-              height={280}
-              priority
-            />
-            <div>
-              <strong>Ram Niwash Pandey</strong>
-              <span>Senior Software Engineer I</span>
-              <small>HCLSoftware · BigFix</small>
-            </div>
-            <span className="statusDot" />
+          <div className={styles.profileSlot}>
+            <ProfileBanner />
           </div>
           <div className={styles.floatingChip}>
             <Icon name="code" />
@@ -78,7 +66,7 @@ export default function Home() {
           </div>
           <div className={styles.orbitLabel}>REACT · NEXT.JS · SYSTEMS · AI</div>
           <div className={styles.stageCaption}>
-            <span>INTERACTIVE 3D / MOVE TO EXPLORE</span>
+            <span>CREATIVE ENGINEERING / MOVE TO EXPLORE</span>
             <span>01 — INFINITE POSSIBILITIES</span>
           </div>
         </div>

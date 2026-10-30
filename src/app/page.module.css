@@ -515,3 +515,129 @@
     right: 8px;
   }
 }
+/* Mobile: reserve separate space for the scene, portrait and captions. */
+@media (max-width: 800px) {
+  .visualStage {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    padding: 38px 0 20px;
+    isolation: isolate;
+  }
+  .visualStage > div:nth-child(2) {
+    flex: none;
+    width: 100%;
+    transform: none;
+    order: 1;
+  }
+  .wordCloud {
+    inset: 18px 0 auto;
+    height: 300px;
+    z-index: 2;
+  }
+  .wordCloud > span:nth-child(2),
+  .wordCloud > span:nth-child(3),
+  .wordCloud > span:nth-child(6) {
+    display: none;
+  }
+  .wordCloud > span:nth-child(1) {
+    top: 18px;
+    right: 14px;
+    font-size: 12px;
+  }
+  .wordCloud > span:nth-child(4) {
+    top: auto;
+    bottom: 18px;
+    left: 12px;
+    font-size: 11px;
+  }
+  .wordCloud > span:nth-child(5) {
+    top: 5px;
+    left: 16px;
+    font-size: 11px;
+  }
+  .portraitGlass {
+    position: relative;
+    inset: auto;
+    order: 2;
+    width: 100%;
+    gap: 15px;
+    padding: 17px;
+    transform: none;
+    animation: none;
+    border-radius: 17px;
+  }
+  .portraitGlass img {
+    width: 76px;
+    height: 88px;
+  }
+  .portraitGlass strong {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  .portraitGlass span:not(:last-child) {
+    font-size: 12px;
+    line-height: 1.6;
+  }
+  .portraitGlass small {
+    font-size: 10px;
+  }
+  .portraitGlass > span:last-child {
+    margin-right: 0;
+  }
+  .floatingChip,
+  .orbitLabel {
+    display: none;
+  }
+  .stageCaption {
+    position: relative;
+    inset: auto;
+    order: 3;
+    justify-content: center;
+    text-align: center;
+    font-size: 8px;
+    margin-top: 2px;
+  }
+  .stageCaption span:first-child {
+    font-size: 0;
+  }
+  .stageCaption span:first-child:after {
+    content: 'CREATIVE ENGINEERING / RAM PANDEY';
+    font-size: 8px;
+    letter-spacing: 0.1em;
+  }
+  .stageCaption span:last-child {
+    display: none;
+  }
+  .hero {
+    gap: 28px;
+  }
+  .hero .scroll {
+    bottom: 22px;
+  }
+  .hero {
+    padding-bottom: 75px;
+  }
+  .heroCopy {
+    padding-bottom: 0;
+  }
+}
+@media (max-width: 360px) {
+  .portraitGlass {
+    padding: 13px;
+    gap: 12px;
+  }
+  .portraitGlass img {
+    width: 60px;
+    height: 75px;
+  }
+  .portraitGlass strong {
+    font-size: 13px;
+  }
+  .portraitGlass span:not(:last-child) {
+    font-size: 10px;
+  }
+  .portraitGlass small {
+    font-size: 9px;
+  }
+}

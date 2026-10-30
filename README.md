@@ -47,3 +47,9 @@ The shared UI uses translucent layers, backdrop blur, a sticky floating header, 
 Navigation uses full route links. The homepage is a long overview; About, Expertise, Services, Contact, the searchable Projects workspace, and five project detail routes are separate documents. The Watcher and Income Tax Calculator were added using owner-supplied descriptions. Omnext links to https://omnext.vercel.app and the calculator links to https://calculate-tax-nine.vercel.app.
 
 Formatting: `npm run format` writes Prettier output for project sources and configuration. `npm run format:check` validates it. Generated builds, dependencies and binary assets are excluded.
+
+## HTML-style contact editor
+
+The shared contact form is an accessible HTML-styled IDE with editable name, email and message controls, line numbers, syntax colors, a live React-rendered preview, character count, and Ctrl/Cmd+Enter submission. Preview content is escaped text, not executable HTML. Native required, length and email constraints apply before the existing FormSubmit request. Provider acceptance is distinguished from delivery, and requests have a 20-second timeout.
+
+Mobile navigation uses native details/summary so opening the menu does not depend on React hydration. Theme storage is optional and guarded. On narrow screens the scene has an explicit 310px height, followed by the portrait and a separate caption; decorative labels are reduced to avoid overlaps.

@@ -1,9 +1,7 @@
 'use client';
-import Link from 'next/link';
 import { useEffect, useId, useRef, useState } from 'react';
 import Image from 'next/image';
 import Icon from '../Icon/Icon';
-import ScrollTyping from '../ScrollTyping/ScrollTyping';
 import styles from './ProfileBanner.module.css';
 export default function ProfileBanner({ onDetailsChange }) {
   const [mode, setMode] = useState(null);
@@ -37,15 +35,32 @@ export default function ProfileBanner({ onDetailsChange }) {
         !root.current?.contains(e.target) &&
         !preview.current?.contains(e.target)
       ) {
+        if (
+          mode === 'details' &&
+          root.current?.closest('[data-profile-workspace]')?.contains(e.target)
+        ) {
+          return;
+        }
         setMode(null);
         setPinned(false);
       }
     };
+    const workspace = root.current?.closest('[data-profile-workspace]');
+    const closeWhenLeavingWorkspace = (event) => {
+      if (event.type === 'pointerleave' && event.pointerType !== 'mouse') return;
+      if (event.type === 'focusout' && workspace?.contains(event.relatedTarget)) return;
+      setMode(null);
+      setPinned(false);
+    };
     addEventListener('keydown', close);
     addEventListener('pointerdown', close);
+    workspace?.addEventListener('pointerleave', closeWhenLeavingWorkspace);
+    workspace?.addEventListener('focusout', closeWhenLeavingWorkspace);
     return () => {
       removeEventListener('keydown', close);
       removeEventListener('pointerdown', close);
+      workspace?.removeEventListener('pointerleave', closeWhenLeavingWorkspace);
+      workspace?.removeEventListener('focusout', closeWhenLeavingWorkspace);
     };
   }, [mode]);
   function show(next) {
@@ -85,15 +100,10 @@ export default function ProfileBanner({ onDetailsChange }) {
       ref={root}
       className={styles.banner}
       data-expanded={Boolean(mode)}
-      onPointerLeave={(event) => {
-        if (event.pointerType === 'mouse') {
-          setMode(null);
-          setPinned(false);
-        }
-      }}
       onBlur={(e) => {
         if (
           !pinned &&
+          mode !== 'details' &&
           !e.currentTarget.contains(e.relatedTarget) &&
           !preview.current?.contains(e.relatedTarget)
         ) {
@@ -149,8 +159,8 @@ export default function ProfileBanner({ onDetailsChange }) {
         <section
           ref={preview}
           id={`${id}-preview`}
-          className={`${styles.preview} ${mode === 'photo' ? styles.photoPreview : styles.detailsPreview}`}
-          aria-label={mode === 'photo' ? 'Expanded portrait' : 'Profile details'}
+          className={`${styles.preview} ${styles.photoPreview}`}
+          aria-label="Expanded portrait"
           role="dialog"
           aria-modal="false"
         >
@@ -167,25 +177,9 @@ export default function ProfileBanner({ onDetailsChange }) {
             alt="Portrait of Ram Niwash Pandey"
             width={1254}
             height={1254}
-            sizes={mode === 'photo' ? '(max-width: 480px) 85vw, 340px' : '150px'}
+            sizes="(max-width: 480px) 85vw, 340px"
             className={styles.previewImage}
           />
-          {mode === 'details' && (
-            <div className={styles.previewText}>
-              <div className={styles.ideTab}>
-                <Icon name="code" size={13} /> profile.md
-              </div>
-              <h3>Ram Niwash Pandey</h3>
-              <ScrollTyping className={styles.typedProfile}>
-                Senior Software Engineer I at HCLSoftware · BigFix. Based in Pune, India. Building
-                with React, Next.js, accessible interfaces, frontend architecture, and practical AI
-                tools.
-              </ScrollTyping>
-              <Link href="/about/" className={styles.profileLink}>
-                View full profile <Icon name="arrow" size={15} />
-              </Link>
-            </div>
-          )}
         </section>
       )}
     </div>

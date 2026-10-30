@@ -1,9 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import styles from './CodeScene.module.css';
-import Image from 'next/image';
 import Link from 'next/link';
-import ScrollTyping from '../ScrollTyping/ScrollTyping';
 
 const examples = [
   {
@@ -113,6 +111,62 @@ const examples = [
     ],
   },
 ];
+
+const profileLines = [
+  [
+    ['<', 'profilePunctuation'],
+    ['Name', 'profileTag'],
+    ['>', 'profilePunctuation'],
+    [' Ram Niwash Pandey ', 'profileName'],
+    ['</', 'profilePunctuation'],
+    ['Name', 'profileTag'],
+    ['>', 'profilePunctuation'],
+  ],
+  [
+    ['<', 'profilePunctuation'],
+    ['Designation', 'profileTag'],
+    ['>', 'profilePunctuation'],
+    ['Senior Software Engineer', 'profileValue'],
+    ['</', 'profilePunctuation'],
+    ['Designation', 'profileTag'],
+    ['>', 'profilePunctuation'],
+  ],
+  [
+    ['<', 'profilePunctuation'],
+    ['AboutMe', 'profileTag'],
+    ['>', 'profilePunctuation'],
+  ],
+  [
+    [
+      '  Senior Software Engineer I at HCLSoftware · BigFix. Based in Pune, India. Building with React, Next.js, accessible interfaces, frontend architecture, and practical AI tools.',
+      'profileCopy',
+    ],
+  ],
+  [
+    ['</', 'profilePunctuation'],
+    ['AboutMe', 'profileTag'],
+    ['>', 'profilePunctuation'],
+  ],
+];
+
+const profileXmlLength =
+  profileLines.reduce(
+    (total, line) => total + line.reduce((lineTotal, [text]) => lineTotal + text.length, 0),
+    0,
+  ) +
+  profileLines.length -
+  1;
+const profileLinkText = 'View full profile ↗';
+const profileLinkStart = profileXmlLength + 1;
+const profileLength = profileLinkStart + profileLinkText.length;
+const profileLineStarts = profileLines.map((_, index) =>
+  profileLines
+    .slice(0, index)
+    .reduce(
+      (total, line) => total + line.reduce((length, [text]) => length + text.length, 0) + 1,
+      0,
+    ),
+);
 
 function snippetLength(example) {
   return example.lines.reduce(
@@ -232,6 +286,7 @@ export default function CodeScene({ showProfile = false }) {
   const scene = useRef(null);
   const [snippetIndex, setSnippetIndex] = useState(0);
   const [visibleChars, setVisibleChars] = useState(4);
+  const [profileChars, setProfileChars] = useState(0);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [outputOpen, setOutputOpen] = useState(false);
   const [editing, setEditing] = useState(false);
@@ -267,6 +322,33 @@ export default function CodeScene({ showProfile = false }) {
     preference.addEventListener('change', updatePreference);
     return () => preference.removeEventListener('change', updatePreference);
   }, []);
+
+  useEffect(() => {
+    let timer = 0;
+    const frame = requestAnimationFrame(() => {
+      if (!showProfile) {
+        setProfileChars(0);
+        return;
+      }
+      if (reducedMotion) {
+        setProfileChars(profileLength);
+        return;
+      }
+
+      setProfileChars(0);
+      let visible = 0;
+      timer = window.setInterval(() => {
+        visible = Math.min(visible + 1, profileLength);
+        setProfileChars(visible);
+        if (visible === profileLength) window.clearInterval(timer);
+      }, 36);
+    });
+
+    return () => {
+      cancelAnimationFrame(frame);
+      window.clearInterval(timer);
+    };
+  }, [showProfile, reducedMotion]);
 
   useEffect(() => {
     if (!editing) return;
@@ -338,6 +420,31 @@ export default function CodeScene({ showProfile = false }) {
   const activeLineIndex = lineStarts.findIndex(
     (start, lineIndex) =>
       displayedChars >= start && displayedChars < start + lineLengths[lineIndex],
+  );
+  const renderedProfileLines = profileLines.map((line, lineIndex) => {
+    const start = profileLineStarts[lineIndex];
+    const length = line.reduce((total, [text]) => total + text.length, 0);
+    if (profileChars < start) return null;
+
+    let remaining = Math.max(0, profileChars - start);
+    return (
+      <div className={styles.profileLine} key={lineIndex}>
+        {line.map(([text, className], segmentIndex) => {
+          const visibleText = text.slice(0, remaining);
+          remaining = Math.max(0, remaining - text.length);
+          return (
+            <span className={styles[className]} key={`${lineIndex}-${segmentIndex}`}>
+              {visibleText}
+            </span>
+          );
+        })}
+        {profileChars < start + length && <span className={styles.cursor} aria-hidden="true" />}
+      </div>
+    );
+  });
+  const visibleProfileLinkLength = Math.max(
+    0,
+    Math.min(profileLinkText.length, profileChars - profileLinkStart),
   );
 
   function selectExample(index) {
@@ -414,24 +521,17 @@ export default function CodeScene({ showProfile = false }) {
         <div className={styles.editor} data-profile={showProfile}>
           {showProfile ? (
             <div className={styles.profileView}>
-              <div className={styles.profileTitle}>ram-pandey / profile.md</div>
+              <div className={styles.profileTitle}>ram-pandey / profile.xml</div>
               <div className={styles.profileBody}>
-                <Image
-                  src="/images/profile/ram-pandey-cutout.png"
-                  alt="Ram Niwash Pandey"
-                  width={1254}
-                  height={1254}
-                  sizes="150px"
-                />
-                <div>
-                  <h3>Ram Niwash Pandey</h3>
-                  <ScrollTyping className={styles.profileCopy}>
-                    Senior Software Engineer I at HCLSoftware · BigFix. Based in Pune, India.
-                    Building with React, Next.js, accessible interfaces, frontend architecture, and
-                    practical AI tools.
-                  </ScrollTyping>
-                  <Link href="/about/">View full profile ↗</Link>
-                </div>
+                {renderedProfileLines}
+                {visibleProfileLinkLength > 0 && (
+                  <Link href="/about/" aria-label="View full profile">
+                    {profileLinkText.slice(0, visibleProfileLinkLength)}
+                    {visibleProfileLinkLength < profileLinkText.length && (
+                      <span className={styles.cursor} aria-hidden="true" />
+                    )}
+                  </Link>
+                )}
               </div>
             </div>
           ) : (

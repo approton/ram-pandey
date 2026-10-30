@@ -28,7 +28,7 @@
 }
 .editor {
   position: relative;
-  width: min(100%, 430px);
+  width: min(100%, 540px);
   overflow: hidden;
   border: 1px solid #ffffff38;
   border-radius: 13px;
@@ -455,7 +455,7 @@
     animation-duration: 9s;
   }
   .editor {
-    width: min(100%, 430px);
+    width: min(100%, 540px);
     transform: rotateX(calc(7deg + var(--tilt-x, 0deg))) rotateY(calc(-7deg + var(--tilt-y, 0deg)))
       rotateZ(-0.5deg);
   }
@@ -577,7 +577,7 @@
   inset: 42px 4% 64px;
 }
 .editor {
-  width: min(100%, 460px);
+  width: min(100%, 540px);
 }
 .codeArea {
   min-height: 215px;
@@ -621,7 +621,7 @@
   min-height: 395px;
 }
 .editorStage {
-  inset: 12px 4% 42px;
+  inset: 12px 0 42px;
 }
 @media (max-width: 800px) {
   .scene {
@@ -646,33 +646,47 @@
     monospace;
 }
 .profileBody {
-  display: grid;
-  grid-template-columns: 30% minmax(0, 1fr);
-  gap: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
   padding: 18px 16px;
-  align-items: center;
-}
-.profileBody img {
-  width: 100%;
-  height: 210px;
-  object-fit: contain;
-}
-.profileBody h3 {
-  font-size: 17px;
-  margin: 0 0 12px;
-  color: #fff;
-}
-.profileBody .profileCopy {
   font:
     12px/1.8 var(--font-geist-mono),
     monospace;
-  color: #d8ddf6;
-  margin: 0 0 12px;
+}
+.profileLine {
+  color: #28344e;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.profileTag {
+  color: #4543a0;
+}
+.profilePunctuation {
+  color: #64708a;
+}
+.profileName {
+  color: #17213a;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: -0.035em;
+}
+.profileValue {
+  color: #28344e;
+}
+.profileBody .profileCopy {
+  display: inline;
+  color: #28344e;
+  font:
+    11px/1.8 var(--font-geist-mono),
+    monospace;
+  overflow-wrap: anywhere;
 }
 .profileBody a {
-  font:
-    12px var(--font-geist-mono),
-    monospace;
+  margin-top: 2px;
+  font: inherit;
   color: #b7aaff;
 }
 @media (max-width: 800px) {
@@ -680,21 +694,18 @@
     min-height: 277px;
   }
   .profileBody {
-    gap: 10px;
+    gap: 6px;
     padding: 12px;
   }
   .profileBody .profileCopy {
-    font-size: 10px;
+    font-size: 9px;
   }
-  .profileBody h3 {
-    font-size: 14px;
-  }
-  .profileBody img {
-    height: 180px;
+  .profileName {
+    font-size: 18px;
   }
 }
 
-/* Render the portrait and biography on a flat, crisp surface while open. */
+/* Render the profile text on a flat, crisp surface while open. */
 .editor[data-profile='true'] {
   transform: none;
   transition: none;
@@ -709,18 +720,10 @@
   color: #4543a0;
   border-color: #cbd2e2;
 }
-.profileBody h3 {
-  color: #17213a;
-}
 .profileBody .profileCopy {
   color: #28344e;
   font-weight: 500;
 }
 .profileBody a {
   color: #4543a0;
-}
-.profileBody img {
-  transform: none;
-  filter: none;
-  opacity: 1;
 }

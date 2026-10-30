@@ -1,10 +1,11 @@
 .workspace {
-  width: 100%;
+  width: min(100%, 540px);
   min-width: 0;
+  margin-inline: auto;
 }
 .banner {
   position: relative;
-  width: min(100%, 460px);
+  width: min(100%, 500px);
   margin: -20px auto 0;
   z-index: 20;
 }

@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { projects } from '@/data/profile';
-import Icon from './Icon';
+import Icon from '../Icon/Icon';
 export function ProjectVisual({ project: p }) {
   return (
     <div className={`projectVisual ${p.color}`} aria-hidden="true">

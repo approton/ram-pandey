@@ -1,4 +1,4 @@
-import Icon from '@/components/Icon';
+import Icon from '@/components/Icon/Icon';
 export const metadata = {
   title: 'Services — Engineering for Your Next Product',
   description:

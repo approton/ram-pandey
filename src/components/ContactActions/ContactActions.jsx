@@ -1,4 +1,4 @@
-import Icon from './Icon';
+import Icon from '../Icon/Icon';
 import { profile } from '@/data/profile';
 export function SocialLinks() {
   return (

@@ -2799,43 +2799,11 @@ body {
 .themeMoon {
   display: none;
 }
-.theme:has(.themeNative:checked) .themeSun {
+html[data-theme='light'] .theme .themeSun {
   display: none;
 }
-.theme:has(.themeNative:checked) .themeMoon {
+html[data-theme='light'] .theme .themeMoon {
   display: grid;
-}
-html:has(#theme-switch:checked) {
-  --bg: #eef0fa;
-  --surface: #f9faff;
-  --surface2: #e8eafa;
-  --text: #1b2443;
-  --muted: #535e7b;
-  --line: #34467a24;
-  --accent: #5454c7;
-  --accent2: #087a8d;
-  --accentInk: #fff;
-  --glass: #ffffff85;
-  --glassStrong: #f9faffeb;
-  --glassEdge: #ffffffdd;
-  --glow: #8e7cff26;
-  color-scheme: light;
-}
-html:has(#theme-switch:not(:checked)) {
-  --bg: #080c16;
-  --surface: #111725;
-  --surface2: #182037;
-  --text: #f1f3ff;
-  --muted: #a7b1ca;
-  --line: #ffffff18;
-  --accent: #9b9eff;
-  --accent2: #6ce3ef;
-  --accentInk: #0b1024;
-  --glass: #151d3078;
-  --glassStrong: #101829df;
-  --glassEdge: #ffffff25;
-  --glow: #7968ff40;
-  color-scheme: dark;
 }
 @media (max-width: 760px) {
   .themeSun svg,

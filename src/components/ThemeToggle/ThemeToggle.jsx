@@ -1,18 +1,10 @@
 'use client';
 import { useEffect, useRef } from 'react';
-import Icon from './Icon';
+import Icon from '../Icon/Icon';
 export default function ThemeToggle() {
   const input = useRef(null);
   useEffect(() => {
-    let saved;
-    try {
-      saved = localStorage.getItem('ram-theme');
-    } catch {}
-    const light =
-      saved === 'light' ||
-      (saved !== 'dark' && matchMedia('(prefers-color-scheme: light)').matches);
-    if (input.current) input.current.checked = light;
-    document.documentElement.dataset.theme = light ? 'light' : 'dark';
+    if (input.current) input.current.checked = document.documentElement.dataset.theme === 'light';
   }, []);
   function change(e) {
     const next = e.currentTarget.checked ? 'light' : 'dark';

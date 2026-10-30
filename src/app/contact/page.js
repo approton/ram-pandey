@@ -1,6 +1,6 @@
-import ContactForm from '@/components/ContactForm';
-import ContactActions, { SocialLinks } from '@/components/ContactActions';
-import Icon from '@/components/Icon';
+import ContactForm from '@/components/ContactForm/ContactForm';
+import ContactActions, { SocialLinks } from '@/components/ContactActions/ContactActions';
+import Icon from '@/components/Icon/Icon';
 export const metadata = {
   title: 'Contact — Start a Conversation',
   description:

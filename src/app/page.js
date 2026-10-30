@@ -1,11 +1,11 @@
-import ProfileBanner from '@/components/ProfileBanner';
-import Scene from '@/components/Scene';
-import Icon from '@/components/Icon';
-import ContactActions, { SocialLinks } from '@/components/ContactActions';
+import ProfileBanner from '@/components/ProfileBanner/ProfileBanner';
+import Scene from '@/components/CodeScene/CodeScene';
+import Icon from '@/components/Icon/Icon';
+import ContactActions, { SocialLinks } from '@/components/ContactActions/ContactActions';
 import Link from 'next/link';
 import { expertise } from '@/data/profile';
-import Projects from '@/components/Projects';
-import ContactForm from '@/components/ContactForm';
+import Projects from '@/components/Projects/Projects';
+import ContactForm from '@/components/ContactForm/ContactForm';
 import styles from './page.module.css';
 export const metadata = { alternates: { canonical: '/' } };
 export default function Home() {

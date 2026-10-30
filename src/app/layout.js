@@ -1,5 +1,5 @@
 import localFont from 'next/font/local';
-import Shell from '@/components/Shell';
+import Shell from '@/components/Shell/Shell';
 import './globals.css';
 const sans = localFont({
   src: './fonts/geist.woff2',
@@ -27,6 +27,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning className={`${sans.variable} ${mono.variable}`}>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `let savedTheme;try{savedTheme=localStorage.getItem('ram-theme')}catch{}const useLightTheme=savedTheme==='light'||(savedTheme!=='dark'&&matchMedia('(prefers-color-scheme: light)').matches);document.documentElement.dataset.theme=useLightTheme?'light':'dark';`,
+          }}
+        />
+      </head>
       <body>
         <Shell>{children}</Shell>
         <script

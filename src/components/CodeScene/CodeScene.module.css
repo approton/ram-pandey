@@ -1,0 +1,519 @@
+.scene {
+  position: relative;
+  width: 100%;
+  min-height: 460px;
+  isolation: isolate;
+  perspective: 1100px;
+  perspective-origin: 50% 42%;
+}
+.halo {
+  position: absolute;
+  inset: 12% 8% 20%;
+  border-radius: 50%;
+  background:
+    radial-gradient(ellipse at 38% 45%, #635cfb38, transparent 56%),
+    radial-gradient(ellipse at 70% 58%, #24d8e52a, transparent 58%);
+  filter: blur(30px);
+}
+.editorStage {
+  position: absolute;
+  inset: 48px 6% 96px;
+  display: grid;
+  place-items: center;
+  transform-style: preserve-3d;
+  animation: editorFloat 8s ease-in-out infinite;
+}
+.editorStage:hover {
+  animation-play-state: paused;
+}
+.editor {
+  position: relative;
+  width: min(100%, 430px);
+  overflow: hidden;
+  border: 1px solid #ffffff38;
+  border-radius: 13px;
+  background: linear-gradient(145deg, #151b31f5, #0d1325f7 70%);
+  box-shadow:
+    0 4px 0 #515ac0,
+    0 8px 0 #343d8b,
+    0 25px 35px #02040e70,
+    0 50px 75px #4e55f43b,
+    inset 0 1px 0 #ffffff35;
+  transform:
+    rotateX(calc(9deg + var(--tilt-x, 0deg)))
+    rotateY(calc(-11deg + var(--tilt-y, 0deg)))
+    rotateZ(-1deg)
+    translateZ(16px);
+  transform-style: preserve-3d;
+  transition:
+    transform 220ms cubic-bezier(0.2, 0.75, 0.2, 1),
+    box-shadow 220ms ease;
+}
+.editorStage:hover .editor {
+  box-shadow:
+    0 4px 0 #515ac0,
+    0 8px 0 #343d8b,
+    0 28px 42px #02040e70,
+    0 55px 85px #4e55f456,
+    inset 0 1px 0 #ffffff35;
+}
+.titlebar {
+  height: 37px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 12px;
+  border-bottom: 1px solid #ffffff12;
+  background: linear-gradient(90deg, #252b48, #1a2038);
+}
+.windowDots {
+  display: flex;
+  gap: 5px;
+}
+.windowDots i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ff6e8a;
+  box-shadow: 0 0 8px #ff6e8a55;
+}
+.windowDots i:nth-child(2) {
+  background: #ffc968;
+  box-shadow: 0 0 8px #ffc96855;
+}
+.windowDots i:nth-child(3) {
+  background: #63e3b1;
+  box-shadow: 0 0 8px #63e3b155;
+}
+.workspaceName {
+  color: #b7c0e0;
+  font: 9px var(--font-geist-mono), monospace;
+  letter-spacing: 0.02em;
+}
+.workspaceName span {
+  color: #667195;
+  padding: 0 3px;
+}
+.liveIndicator {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: auto;
+  color: #8de8d0;
+  font: 7px var(--font-geist-mono), monospace;
+  letter-spacing: 0.12em;
+}
+.liveIndicator i,
+.statusbar i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #56e3b3;
+  box-shadow: 0 0 8px #56e3b3;
+}
+.editButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 34px;
+  min-height: 27px;
+  padding: 3px 6px;
+  border: 1px solid #9c92ff50;
+  border-radius: 5px;
+  color: #d3ccff;
+  background: #9c92ff18;
+  font: 7px var(--font-geist-mono), monospace;
+  letter-spacing: 0.06em;
+  transition:
+    color 160ms ease,
+    background 160ms ease,
+    border-color 160ms ease;
+}
+.editButton:hover,
+.editButton[aria-pressed='true'] {
+  border-color: #b6aaff;
+  color: #17142b;
+  background: #b6aaff;
+}
+.runButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 7px;
+  border: 1px solid #6be4b744;
+  border-radius: 5px;
+  color: #a4f6d4;
+  background: #49d9a51a;
+  font: 7px var(--font-geist-mono), monospace;
+  letter-spacing: 0.08em;
+  transition:
+    color 160ms ease,
+    background 160ms ease,
+    box-shadow 160ms ease;
+}
+.runButton:hover,
+.runButton[aria-expanded='true'] {
+  color: #09241d;
+  background: #7ce9bd;
+  box-shadow: 0 0 16px #59e4b766;
+}
+.runButton span {
+  font-size: 6px;
+}
+.tabbar {
+  height: 33px;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 8px;
+  padding-right: 8px;
+  border-bottom: 1px solid #ffffff0f;
+  background: #11172a;
+}
+.fileName {
+  min-width: 0;
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  gap: 7px;
+  padding: 0 10px;
+  border-right: 1px solid #ffffff0c;
+  border-top: 1px solid #9a8bff;
+  color: #d7ddf6;
+  font: 8px var(--font-geist-mono), monospace;
+  white-space: nowrap;
+}
+.languageDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  background: linear-gradient(135deg, #ffe276, #fc8d6a);
+}
+.languageTabs {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 3px;
+  margin-left: auto;
+}
+.languageTab {
+  min-width: 28px;
+  min-height: 27px;
+  padding: 3px 5px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: #818ca9;
+  background: transparent;
+  font: 7px var(--font-geist-mono), monospace;
+  transition:
+    color 160ms ease,
+    border-color 160ms ease,
+    background 160ms ease;
+}
+.languageTab:hover {
+  color: #e2ddff;
+  background: #9c92ff18;
+}
+.selectedTab {
+  border-color: #9c92ff50;
+  color: #d9d2ff;
+  background: #9c92ff18;
+}
+.codeArea {
+  min-height: 168px;
+  display: flex;
+  background:
+    radial-gradient(ellipse at 82% 0%, #5550ad14, transparent 50%),
+    #101629;
+}
+.activityRail {
+  width: 30px;
+  flex: 0 0 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding-top: 12px;
+  border-right: 1px solid #ffffff0c;
+  color: #7380a1;
+  font: 11px var(--font-geist-mono), monospace;
+}
+.activityRail span:first-child {
+  color: #c1a8ff;
+}
+.codeLines {
+  position: relative;
+  width: 100%;
+  padding: 12px 0;
+  overflow: auto;
+  color: #d8ddf6;
+  font: 9px/1.9 var(--font-geist-mono), monospace;
+}
+.codeLine {
+  display: grid;
+  grid-template-columns: 31px minmax(0, 1fr);
+  min-height: 18px;
+  padding-right: 8px;
+  white-space: pre;
+}
+.lineNumber {
+  padding-right: 8px;
+  text-align: right;
+  color: #56617f;
+  user-select: none;
+}
+.codeLine code {
+  min-width: 0;
+  overflow: hidden;
+  font: inherit;
+}
+.editedCode {
+  display: block;
+  white-space: pre;
+}
+.codeInput {
+  position: absolute;
+  z-index: 1;
+  inset: 12px 0 12px 23px;
+  width: calc(100% - 23px);
+  height: calc(100% - 24px);
+  min-height: 0;
+  margin: 0;
+  padding: 0 0 0 8px;
+  border: 0;
+  outline: 0;
+  overflow: hidden;
+  resize: none;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  caret-color: #b7aaff;
+  background: transparent;
+  border: 0;
+  outline: none !important;
+  box-shadow: none !important;
+  font: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  white-space: pre;
+  tab-size: 4;
+  opacity: 0;
+}
+.codeInput:focus {
+  opacity: 1;
+}
+.keyword {
+  color: #d69dff;
+}
+.name {
+  color: #7ad8ff;
+}
+.string {
+  color: #98e6b2;
+}
+.tag {
+  color: #ff8ea7;
+}
+.attribute {
+  color: #ffc979;
+}
+.punctuation {
+  color: #c4c9e6;
+}
+.cursor {
+  display: inline-block;
+  width: 1px;
+  height: 1em;
+  margin-left: 1px;
+  vertical-align: -2px;
+  background: #9c92ff;
+  box-shadow: 0 0 8px #9c92ff;
+  animation: cursorBlink 1s steps(2, start) infinite;
+}
+.statusbar {
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  color: #b6c1e2;
+  background: linear-gradient(90deg, #625be2, #427fbd 72%, #378eaa);
+  font: 7px var(--font-geist-mono), monospace;
+  letter-spacing: 0.03em;
+}
+.statusbar span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.statusbar i {
+  width: 4px;
+  height: 4px;
+  background: #d0ffdd;
+  box-shadow: 0 0 6px #d0ffdd;
+}
+.statusbar b {
+  font-weight: 400;
+  opacity: 0.65;
+}
+.output {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 0;
+  overflow: hidden;
+  padding: 0 12px;
+  border-top: 0 solid #ffffff10;
+  color: #9eabc9;
+  background: #0c1222;
+  font: 8px var(--font-geist-mono), monospace;
+  opacity: 0;
+  transition:
+    height 220ms ease,
+    opacity 180ms ease,
+    border-width 220ms ease;
+}
+.outputOpen {
+  height: 35px;
+  border-top-width: 1px;
+  opacity: 1;
+}
+.outputTitle {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 5px;
+  color: #8793b1;
+  font-size: 7px;
+  letter-spacing: 0.1em;
+}
+.outputTitle i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #61dfad;
+  box-shadow: 0 0 7px #61dfad;
+}
+.pause {
+  position: absolute;
+  top: 20px;
+  right: 6%;
+  z-index: 4;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--text);
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+}
+.pause:hover {
+  border-color: var(--accent);
+  color: var(--accent2);
+}
+.paused * {
+  animation-play-state: paused !important;
+}
+@keyframes editorFloat {
+  0%,
+  100% {
+    transform: translateY(3px) rotateZ(-0.5deg);
+  }
+  50% {
+    transform: translateY(-8px) rotateZ(0.5deg);
+  }
+}
+@keyframes cursorBlink {
+  to {
+    visibility: hidden;
+  }
+}
+@media (max-width: 800px) {
+  .scene {
+    height: 310px;
+    min-height: 310px;
+    flex-shrink: 0;
+  }
+  .editorStage {
+    inset: 38px 2% 28px;
+    animation-duration: 9s;
+  }
+  .editor {
+    width: min(100%, 430px);
+    transform:
+      rotateX(calc(7deg + var(--tilt-x, 0deg)))
+      rotateY(calc(-7deg + var(--tilt-y, 0deg)))
+      rotateZ(-0.5deg);
+  }
+  .codeArea {
+    min-height: 138px;
+  }
+  .codeLines {
+    font-size: 8px;
+  }
+  .pause {
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+  }
+}
+@media (max-width: 380px) {
+  .editorStage {
+    inset-inline: 0;
+  }
+  .titlebar {
+    padding-inline: 9px;
+    gap: 5px;
+  }
+  .workspaceName {
+    font-size: 8px;
+  }
+  .liveIndicator {
+    gap: 3px;
+    font-size: 6px;
+  }
+  .editButton {
+    min-width: 31px;
+    min-height: 28px;
+    padding-inline: 4px;
+    font-size: 6px;
+  }
+  .runButton {
+    min-height: 28px;
+    padding-inline: 5px;
+    font-size: 6px;
+  }
+  .fileName {
+    padding-inline: 7px;
+    font-size: 7px;
+  }
+  .languageTabs {
+    gap: 1px;
+  }
+  .languageTab {
+    min-width: 25px;
+    min-height: 25px;
+    padding-inline: 4px;
+    font-size: 7px;
+  }
+  .codeLines {
+    font-size: 7px;
+  }
+  .activityRail {
+    width: 25px;
+    flex-basis: 25px;
+  }
+}
+@media (hover: none) {
+  .editorStage {
+    animation: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .editorStage,
+  .cursor {
+    animation: none;
+  }
+}

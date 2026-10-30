@@ -1,54 +1,21 @@
 'use client';
-import { useEffect, useLayoutEffect, useId, useRef, useState } from 'react';
-import { createPortal } from 'react-dom';
+import { useEffect, useId, useRef, useState } from 'react';
 import Image from 'next/image';
 import Icon from '../Icon/Icon';
 import styles from './ProfileBanner.module.css';
-export default function ProfileBanner() {
+export default function ProfileBanner({ onDetailsChange }) {
   const [mode, setMode] = useState(null);
   const [pinned, setPinned] = useState(false);
   const root = useRef(null);
   const preview = useRef(null);
-  const [placement, setPlacement] = useState({});
   const photo = useRef(null);
   const details = useRef(null);
   const ignoreFocus = useRef(false);
   const id = useId();
-  useLayoutEffect(() => {
-    if (!mode) return;
-    const position = () => {
-      if (innerWidth <= 800) {
-        setPlacement({});
-        return;
-      }
-      if (!root.current || !preview.current) return;
-      const rect = root.current.getBoundingClientRect();
-      const width = Math.min(mode === 'photo' ? 340 : 460, innerWidth - 32);
-      const height = Math.min(preview.current.scrollHeight, innerHeight - 132);
-      const left = Math.max(
-        16,
-        Math.min(mode === 'photo' ? rect.left : rect.right - width, innerWidth - width - 16),
-      );
-      const top = Math.max(112, Math.min(rect.top - height - 14, innerHeight - height - 16));
-      setPlacement({
-        position: 'fixed',
-        left,
-        top,
-        bottom: 'auto',
-        right: 'auto',
-        width,
-        maxHeight: innerHeight - 132,
-        overflowY: 'auto',
-      });
-    };
-    position();
-    addEventListener('resize', position);
-    addEventListener('scroll', position, { passive: true });
-    return () => {
-      removeEventListener('resize', position);
-      removeEventListener('scroll', position);
-    };
-  }, [mode]);
+  useEffect(() => {
+    onDetailsChange?.(mode === 'details');
+    return () => onDetailsChange?.(false);
+  }, [mode, onDetailsChange]);
   useEffect(() => {
     const close = (e) => {
       if (e.type === 'keydown' && e.key === 'Escape') {
@@ -68,15 +35,32 @@ export default function ProfileBanner() {
         !root.current?.contains(e.target) &&
         !preview.current?.contains(e.target)
       ) {
+        if (
+          mode === 'details' &&
+          root.current?.closest('[data-profile-workspace]')?.contains(e.target)
+        ) {
+          return;
+        }
         setMode(null);
         setPinned(false);
       }
     };
+    const workspace = root.current?.closest('[data-profile-workspace]');
+    const closeWhenLeavingWorkspace = (event) => {
+      if (event.type === 'pointerleave' && event.pointerType !== 'mouse') return;
+      if (event.type === 'focusout' && workspace?.contains(event.relatedTarget)) return;
+      setMode(null);
+      setPinned(false);
+    };
     addEventListener('keydown', close);
     addEventListener('pointerdown', close);
+    workspace?.addEventListener('pointerleave', closeWhenLeavingWorkspace);
+    workspace?.addEventListener('focusout', closeWhenLeavingWorkspace);
     return () => {
       removeEventListener('keydown', close);
       removeEventListener('pointerdown', close);
+      workspace?.removeEventListener('pointerleave', closeWhenLeavingWorkspace);
+      workspace?.removeEventListener('focusout', closeWhenLeavingWorkspace);
     };
   }, [mode]);
   function show(next) {
@@ -116,16 +100,10 @@ export default function ProfileBanner() {
       ref={root}
       className={styles.banner}
       data-expanded={Boolean(mode)}
-      onPointerLeave={() => {
-        if (!pinned && !root.current?.contains(document.activeElement)) {
-          requestAnimationFrame(() => {
-            if (!preview.current?.matches(':hover')) setMode(null);
-          });
-        }
-      }}
       onBlur={(e) => {
         if (
           !pinned &&
+          mode !== 'details' &&
           !e.currentTarget.contains(e.relatedTarget) &&
           !preview.current?.contains(e.relatedTarget)
         ) {
@@ -144,7 +122,7 @@ export default function ProfileBanner() {
         onClick={() => toggle('photo')}
       >
         <Image
-          src="/images/profile/ram-pandey.png"
+          src="/images/profile/ram-pandey-cutout.png"
           alt="Ram Niwash Pandey"
           width={1254}
           height={1254}
@@ -177,71 +155,33 @@ export default function ProfileBanner() {
         </span>
       </button>
       <span className={`statusDot ${styles.dot}`} aria-hidden="true" />
-      {mode && typeof document !== 'undefined' &&
-        createPortal(
-          <>
-            <button
-              type="button"
-              className={styles.backdrop}
-              aria-label="Close profile preview"
-              onClick={closePreview}
-            />
-            <section
-              ref={preview}
-              style={placement}
-              id={`${id}-preview`}
-              className={`${styles.preview} ${mode === 'photo' ? styles.photoPreview : styles.detailsPreview}`}
-              aria-label={mode === 'photo' ? 'Expanded portrait' : 'Profile details'}
-              role="dialog"
-              aria-modal="true"
-            >
-              <button
-                type="button"
-                className={styles.close}
-                aria-label="Close profile preview"
-                onClick={closePreview}
-              >
-                <Icon name="close" size={17} />
-              </button>
-              <Image
-                src="/images/profile/ram-pandey.png"
-                alt="Portrait of Ram Niwash Pandey"
-                width={1254}
-                height={1254}
-                sizes={mode === 'photo' ? '(max-width: 480px) 85vw, 340px' : '150px'}
-                className={styles.previewImage}
-              />
-              <div className={styles.previewText}>
-                <span className={styles.eyebrow}>
-                  {mode === 'photo' ? 'THE PERSON BEHIND THE CODE' : 'ENGINEERING WITH INTENT'}
-                </span>
-                <h3>Ram Niwash Pandey</h3>
-                {mode === 'details' && (
-                  <>
-                    <p className={styles.role}>
-                      Senior Software Engineer I<br />
-                      HCLSoftware · BigFix
-                    </p>
-                    <span className={styles.location}>
-                      <Icon name="location" size={14} /> Pune, India
-                    </span>
-                    <p className={styles.description}>
-                      React, Next.js, accessible interfaces, frontend architecture, and practical AI
-                      tools.
-                    </p>
-                    <a href="/about/" className={styles.profileLink}>
-                      View full profile <Icon name="arrow" size={15} />
-                    </a>
-                  </>
-                )}
-                {mode === 'photo' && (
-                  <p className={styles.photoNote}>Engineer. Problem solver. Builder.</p>
-                )}
-              </div>
-            </section>
-          </>,
-          document.body,
-        )}
+      {mode === 'photo' && (
+        <section
+          ref={preview}
+          id={`${id}-preview`}
+          className={`${styles.preview} ${styles.photoPreview}`}
+          aria-label="Expanded portrait"
+          role="dialog"
+          aria-modal="false"
+        >
+          <button
+            type="button"
+            className={styles.close}
+            aria-label="Close profile preview"
+            onClick={closePreview}
+          >
+            <Icon name="close" size={17} />
+          </button>
+          <Image
+            src="/images/profile/ram-pandey-cutout.png"
+            alt="Portrait of Ram Niwash Pandey"
+            width={1254}
+            height={1254}
+            sizes="(max-width: 480px) 85vw, 340px"
+            className={styles.previewImage}
+          />
+        </section>
+      )}
     </div>
   );
 }

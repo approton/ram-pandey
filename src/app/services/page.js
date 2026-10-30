@@ -1,3 +1,5 @@
+import Link from 'next/link';
+import ScrollTyping from '@/components/ScrollTyping/ScrollTyping';
 import Icon from '@/components/Icon/Icon';
 export const metadata = {
   title: 'Services — Engineering for Your Next Product',
@@ -69,9 +71,9 @@ export default function Services() {
           Software development and engineering conversations grounded in the real problem, the
           people using the product, and the constraints that matter.
         </p>
-        <a className="button primary" href="/contact/">
+        <Link className="button primary" href="/contact/">
           Discuss your project <Icon name="arrow" />
-        </a>
+        </Link>
       </section>
       <section className="section">
         <div className="serviceDetails">
@@ -84,7 +86,7 @@ export default function Services() {
               <div>
                 <h2>{t}</h2>
                 <p className="lead">{sub}</p>
-                <p>{d}</p>
+                <ScrollTyping>{d}</ScrollTyping>
                 <ul>
                   {list.map((item) => (
                     <li key={item}>
@@ -93,9 +95,9 @@ export default function Services() {
                     </li>
                   ))}
                 </ul>
-                <a className="textLink" href="/contact/">
+                <Link className="textLink" href="/contact/">
                   Talk about {t.toLowerCase()} <Icon name="arrow" size={18} />
-                </a>
+                </Link>
               </div>
             </article>
           ))}
@@ -138,9 +140,9 @@ export default function Services() {
             </article>
           ))}
         </div>
-        <a className="button primary" href="/contact/">
+        <Link className="button primary" href="/contact/">
           Start with a conversation <Icon name="arrow" />
-        </a>
+        </Link>
       </section>
     </>
   );

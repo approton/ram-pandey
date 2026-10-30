@@ -1,0 +1,16 @@
+.workspace {
+  width: min(100%, 540px);
+  min-width: 0;
+  margin-inline: auto;
+}
+.banner {
+  position: relative;
+  width: min(100%, 500px);
+  margin: -20px auto 0;
+  z-index: 20;
+}
+@media (max-width: 800px) {
+  .banner {
+    margin-top: 0;
+  }
+}

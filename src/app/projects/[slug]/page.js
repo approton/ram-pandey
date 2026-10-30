@@ -1,3 +1,5 @@
+import Link from 'next/link';
+import ScrollTyping from '@/components/ScrollTyping/ScrollTyping';
 import { notFound } from 'next/navigation';
 import { projects } from '@/data/profile';
 import { ProjectVisual } from '@/components/Projects/Projects';
@@ -21,9 +23,9 @@ export default async function ProjectDetail({ params }) {
   return (
     <>
       <section className="pageHero projectDetailHero">
-        <a href="/projects/" className="breadcrumb">
+        <Link href="/projects/" className="breadcrumb">
           ← Project workspace / {p.category}
-        </a>
+        </Link>
         <div className="projectHeroGrid">
           <div>
             <span className="eyebrow">
@@ -79,7 +81,7 @@ export default async function ProjectDetail({ params }) {
               <span>↗</span>
             </a>
           ))}
-          <a href="/projects/">← All projects</a>
+          <Link href="/projects/">← All projects</Link>
         </aside>
         <div className="articleBody">
           <section id="overview">
@@ -91,7 +93,7 @@ export default async function ProjectDetail({ params }) {
             </h2>
             <p className="lead">{p.problem}</p>
             <h3>The approach</h3>
-            <p>{p.approach}</p>
+            <ScrollTyping>{p.approach}</ScrollTyping>
           </section>
           <section id="capabilities">
             <span className="eyebrow">02 / THE SCOPE</span>
@@ -169,10 +171,10 @@ export default async function ProjectDetail({ params }) {
                   <Icon name="arrow" />
                 </a>
               )}
-              <a className="button secondary" href="/contact/">
+              <Link className="button secondary" href="/contact/">
                 Ask me about this project
                 <Icon name="arrow" />
-              </a>
+              </Link>
             </div>
             {p.live && (
               <p className="liveAddress">
@@ -194,22 +196,22 @@ export default async function ProjectDetail({ params }) {
               <em>Another possibility.</em>
             </h2>
           </div>
-          <a href="/projects/" className="textLink">
+          <Link href="/projects/" className="textLink">
             All projects <Icon name="arrow" />
-          </a>
+          </Link>
         </div>
         <div className="relatedProjects">
           {projects
             .filter((other) => other.slug !== p.slug)
             .slice(0, 3)
             .map((other) => (
-              <a href={`/projects/${other.slug}/`} className="glassCard" key={other.slug}>
+              <Link href={`/projects/${other.slug}/`} className="glassCard" key={other.slug}>
                 <Icon name={other.icon} size={30} />
                 <span className="eyebrow">{other.category}</span>
                 <h3>{other.title}</h3>
                 <p>{other.label}</p>
                 <Icon name="arrow" />
-              </a>
+              </Link>
             ))}
         </div>
       </section>

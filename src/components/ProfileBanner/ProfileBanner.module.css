@@ -415,3 +415,201 @@
     grid-template-columns: 85px minmax(0, 1fr);
   }
 }
+/* Photo-only pop: no card surface, identity text or caption. */
+.photoPreview {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
+}
+.photoPreview .previewImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: calc(100dvh - 150px);
+  min-height: 0;
+  border: 0;
+  border-radius: 0;
+  object-fit: contain;
+  filter: drop-shadow(0 24px 35px #0008);
+  transform: perspective(950px) rotateY(-5deg);
+  animation: photoOnlyPop 0.32s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.photoPreview .close {
+  top: 0;
+  right: 0;
+}
+.photoPreview:after {
+  display: none;
+}
+@keyframes photoOnlyPop {
+  from {
+    opacity: 0;
+    transform: perspective(950px) scale(0.94) rotateY(-12deg);
+  }
+  to {
+    opacity: 1;
+    transform: perspective(950px) scale(1) rotateY(-5deg);
+  }
+}
+@media (max-width: 800px) {
+  .photoPreview {
+    padding: 0;
+    width: min(380px, calc(100vw - 36px));
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+  }
+  .photoPreview .previewImage {
+    height: auto;
+    max-height: calc(100dvh - 100px);
+    min-height: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .photoPreview .previewImage {
+    animation: none;
+    transform: none;
+  }
+}
+
+.preview {
+  z-index: 110;
+  overflow: visible;
+  max-height: none;
+}
+.backdrop {
+  display: block;
+  position: fixed;
+  inset: 0;
+  z-index: 109;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: #0509189c;
+  backdrop-filter: blur(5px);
+}
+.detailsPreview .previewImage {
+  object-fit: contain;
+}
+
+/* The preview grows from its banner; the surrounding page remains interactive. */
+.preview {
+  animation: bannerReveal 0.2s ease-out;
+}
+@keyframes bannerReveal {
+  from {
+    opacity: 0;
+    translate: 0 8px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .preview {
+    animation: none;
+  }
+}
+
+/* Anchor to the banner without adding height or moving surrounding content. */
+.banner > .preview {
+  position: absolute;
+  top: auto;
+  bottom: calc(100% - 8px);
+  left: auto;
+  right: 0;
+  width: min(460px, 100%);
+  max-width: 100%;
+  max-height: none;
+  margin: 0;
+  transform: none;
+  transform-origin: bottom center;
+  overflow: visible;
+  box-sizing: border-box;
+  animation: appear 0.16s ease-out;
+}
+.banner > .photoPreview {
+  left: 0;
+  right: auto;
+  width: min(290px, 85%);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.banner > .photoPreview .previewImage {
+  width: 100%;
+  height: auto;
+  max-height: min(330px, 50dvh);
+  object-fit: contain;
+  object-position: bottom left;
+  transform: none;
+  animation: none;
+}
+.banner > .detailsPreview {
+  box-shadow: 0 16px 35px #0004;
+}
+@media (max-width: 800px) {
+  .banner > .photoPreview {
+    width: min(250px, 80%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .banner > .preview {
+    animation: none;
+  }
+}
+
+/* Transparent editor preview, anchored above the banner. */
+.banner > .detailsPreview {
+  background: color-mix(in srgb, var(--surface) 42%, transparent);
+  border: 1px solid var(--glassEdge);
+  box-shadow: 0 12px 28px #0002;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  grid-template-columns: minmax(85px, 30%) minmax(0, 1fr);
+  gap: 8px;
+}
+.detailsPreview .previewImage {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  max-height: 310px;
+  object-fit: contain;
+  background: transparent;
+}
+.detailsPreview .previewText {
+  padding: 10px 8px;
+  min-width: 0;
+}
+.ideTab {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0 30px 10px 0;
+  border-bottom: 1px solid var(--glassEdge);
+  color: var(--accent);
+  font:
+    11px/1.5 var(--font-geist-mono),
+    monospace;
+}
+.detailsPreview .typedProfile {
+  font:
+    12px/1.8 var(--font-geist-mono),
+    monospace;
+  margin: 12px 0 6px;
+  color: var(--text);
+}
+.detailsPreview .previewText h3 {
+  font-size: 18px;
+}
+@media (max-width: 360px) {
+  .detailsPreview .typedProfile {
+    font-size: 11px;
+  }
+}

@@ -2815,3 +2815,189 @@ html[data-theme='light'] .theme .themeMoon {
     min-height: 48px;
   }
 }
+/* A restrained editorial nod to the IDE; body copy keeps its normal reading font. */
+.narrativePanel {
+  padding: 26px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--glass) 45%, transparent);
+}
+.narrativeHeader {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--accent);
+  font:
+    11px/1.7 var(--font-geist-mono),
+    monospace;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 16px;
+  margin-bottom: 23px;
+}
+.narrativeHeader small {
+  font-size: 7px;
+  letter-spacing: 0.07em;
+  color: var(--muted);
+  margin-left: auto;
+}
+.narrativePanel .miniStats {
+  gap: 25px;
+}
+.narrativePanel .miniStats strong {
+  font-size: 20px;
+}
+@media (max-width: 480px) {
+  .narrativePanel {
+    padding: 22px;
+  }
+  .narrativeHeader small {
+    display: none;
+  }
+  .narrativePanel .miniStats {
+    flex-direction: column;
+    gap: 18px;
+  }
+}
+.experienceSummary {
+  font-size: 12px !important;
+  line-height: 1.8;
+  color: var(--muted);
+  margin: 14px 0 22px;
+}
+.experienceAsOf {
+  display: block;
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 8px;
+}
+.miniStats [data-experience-duration] {
+  font-size: 19px;
+}
+.narrativePanel .miniStats {
+  flex-wrap: wrap;
+}
+.profileFacts [data-experience-duration] {
+  font-size: 15px;
+}
+/* The About portrait blends into the page rather than sitting inside a card. */
+.aboutPortrait {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  transform: none;
+  isolation: isolate;
+}
+.aboutPortrait:before {
+  content: '';
+  position: absolute;
+  inset: 5% -12% -5%;
+  z-index: -1;
+  border-radius: 50%;
+  background:
+    radial-gradient(
+      ellipse at 65% 35%,
+      color-mix(in srgb, var(--accent) 22%, transparent),
+      transparent 65%
+    ),
+    radial-gradient(
+      ellipse at 30% 65%,
+      color-mix(in srgb, var(--accent2) 18%, transparent),
+      transparent 68%
+    );
+  filter: blur(25px);
+  pointer-events: none;
+}
+.aboutPortrait img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: center;
+  border: 0;
+  border-radius: 0;
+  filter: none;
+  mask-image: radial-gradient(ellipse 73% 72% at 50% 38%, #000 57%, #000c 76%, transparent 100%);
+  -webkit-mask-image: radial-gradient(
+    ellipse 73% 72% at 50% 38%,
+    #000 57%,
+    #000c 76%,
+    transparent 100%
+  );
+}
+@media (max-width: 760px) {
+  .aboutPortrait {
+    width: min(100%, 420px);
+    margin: auto;
+    transform: none;
+  }
+  .aboutPortrait img {
+    height: auto;
+    max-height: none;
+  }
+}
+/* A real transparent cutout: no office background, decorative frame or edge mask. */
+.aboutHero {
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 55px;
+}
+.aboutPortrait {
+  width: min(100%, 540px);
+  justify-self: center;
+}
+.aboutPortrait img {
+  height: auto;
+  width: 100%;
+  max-height: 570px;
+  object-fit: contain;
+  mask-image: none;
+  -webkit-mask-image: none;
+  filter: none;
+}
+.aboutPortrait:before {
+  inset: 10% -8% 0;
+  filter: blur(30px);
+  opacity: 0.7;
+}
+@media (max-width: 760px) {
+  .aboutHero {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .aboutPortrait {
+    width: min(100%, 440px);
+  }
+  .aboutPortrait img {
+    max-height: 490px;
+  }
+}
+.aboutHeadingRow {
+  display: block;
+}
+@media (max-width: 760px) {
+  .aboutHeadingRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .aboutHeadingRow h1 {
+    flex: 1;
+    min-width: 0;
+    font-size: clamp(34px, 9vw, 52px);
+    margin: 22px 0 25px;
+  }
+  .aboutDesktopPortrait {
+    display: none;
+  }
+  .aboutHero {
+    display: block;
+  }
+  .aboutHero > .aboutPortrait {
+    display: none;
+  }
+}

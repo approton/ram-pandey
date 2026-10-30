@@ -1,0 +1,9 @@
+.passage > p {
+  font-family: var(--font-geist-mono), 'Lucida Console', monospace;
+  font-size: clamp(14px, 1.1vw, 16px);
+  font-weight: 400;
+  font-variant-numeric: tabular-nums slashed-zero;
+  letter-spacing: 0.015em;
+  line-height: 1.95;
+  color: var(--text);
+}

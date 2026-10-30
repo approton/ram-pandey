@@ -1,0 +1,66 @@
+.text {
+  position: relative;
+}
+.fullText {
+  white-space: normal;
+}
+.text[data-typing-state='waiting'] > .fullText,
+.text[data-typing-state='typing'] > .fullText {
+  color: transparent;
+}
+.reveal {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  white-space: normal;
+  color: inherit;
+}
+.caret {
+  display: inline-block;
+  width: 1px;
+  height: 0.85em;
+  margin-left: 2px;
+  margin-right: -3px;
+  background: var(--accent);
+  vertical-align: -0.04em;
+  opacity: 0.7;
+}
+.text::selection,
+.fullText::selection {
+  color: var(--text);
+  background: var(--line);
+}
+@media (prefers-reduced-motion: reduce) {
+  .text[data-typing-state] > .fullText {
+    color: inherit;
+  }
+  .reveal {
+    display: none;
+  }
+}
+@media print {
+  .text[data-typing-state] > .fullText {
+    color: inherit;
+  }
+  .reveal {
+    display: none;
+  }
+}
+.wordGroup {
+  white-space: normal;
+}
+.word {
+  display: inline-block;
+  white-space: pre;
+  transition: opacity 140ms ease;
+  vertical-align: baseline;
+  will-change: clip-path;
+}
+.caret {
+  display: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .word {
+    transition: none;
+  }
+}

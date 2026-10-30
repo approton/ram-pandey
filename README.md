@@ -59,3 +59,9 @@ Mobile navigation uses native details/summary so opening the menu does not depen
 The homepage portrait banner uses the original supplied PNG without saturation filters, animated transforms, or backdrop blur on the image. Its photo and details are separate keyboard-focusable controls. Photo hover/focus opens a larger portrait; details hover/focus opens a medium portrait with professional context. Taps pin a preview; close, Escape, or clicking outside dismisses it.
 
 The theme control is a native checkbox switch with CSS `:has()` theme tokens. Native checking changes the visible theme independently of React click handling; JavaScript initializes and saves the preference where localStorage is available.
+
+## Scroll reading and live experience
+
+Selected narrative paragraphs on Home, About, Expertise, Services, and project details have a single, brief typing reveal when they enter the viewport. Complete text remains in the server-rendered document and accessibility tree, with layout space reserved throughout. There are no repeating deletions, sounds, forced scrolling, or animation on forms/navigation. Reduced-motion, printing, fast scrolling away, and text interaction show the complete paragraph immediately. The existing editable hero IDE is retained, with quieter perspective and no rendering updates while offscreen or in a hidden tab.
+
+Experience starts on 18 January 2021 and uses inclusive calendar months (LinkedIn style): October 2026 = 5 years, 10 months; November 2026 = 5 years, 11 months. A shared month store updates all duration and as-of labels at the Asia/Kolkata month boundary, and checks again when a sleeping tab becomes visible. No daily duration changes occur. Static HTML contains a build-time fallback; browser updates do not require redeployment. Check the month-boundary cases with `node --test tests/experience.test.mjs`.

@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Projects from '@/components/Projects/Projects';
 import Icon from '@/components/Icon/Icon';
 export const metadata = {
@@ -42,9 +43,9 @@ export default function ProjectPage() {
           <br />
           <em>the next conversation.</em>
         </h2>
-        <a className="button primary" href="/contact/">
+        <Link className="button primary" href="/contact/">
           Let’s talk <Icon name="arrow" />
-        </a>
+        </Link>
       </section>
     </>
   );

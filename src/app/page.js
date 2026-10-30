@@ -1,5 +1,8 @@
-import ProfileBanner from '@/components/ProfileBanner/ProfileBanner';
-import Scene from '@/components/CodeScene/CodeScene';
+import HomeNarrative from '@/components/ScrollTyping/HomeNarrative';
+import { getExperience } from '@/lib/experience.mjs';
+import Experience from '@/components/Experience/Experience';
+import ScrollTyping from '@/components/ScrollTyping/ScrollTyping';
+import ProfileWorkspace from '@/components/CodeScene/ProfileWorkspace';
 import Icon from '@/components/Icon/Icon';
 import ContactActions, { SocialLinks } from '@/components/ContactActions/ContactActions';
 import Link from 'next/link';
@@ -31,12 +34,12 @@ export default function Home() {
             practical AI tools. A little curiosity. A lot of intention.
           </p>
           <div className="buttonRow">
-            <a className="button primary" href="/projects/">
+            <Link className="button primary" href="/projects/">
               Enter my workspace <Icon name="arrow" />
-            </a>
-            <a className="button secondary" href="/about/">
+            </Link>
+            <Link className="button secondary" href="/about/">
               Meet the engineer <Icon name="arrow" />
-            </a>
+            </Link>
           </div>
           <div className={styles.heroFoot}>
             <SocialLinks />
@@ -48,16 +51,13 @@ export default function Home() {
         <div className={styles.visualStage}>
           <div className={styles.wordCloud} aria-hidden="true">
             <span>React</span>
-            <span>systems.</span>
+            <span hidden />
             <span>&lt;create /&gt;</span>
             <span>AI × intent</span>
             <span>Next.js</span>
             <span>think → build</span>
           </div>
-          <Scene />
-          <div className={styles.profileSlot}>
-            <ProfileBanner />
-          </div>
+          <ProfileWorkspace />
           <div className={styles.floatingChip}>
             <Icon name="code" />
             <span>
@@ -70,21 +70,20 @@ export default function Home() {
             <span>01 — INFINITE POSSIBILITIES</span>
           </div>
         </div>
-        <a href="#overview" className={styles.scroll}>
-          <span className={styles.mouse} /> SCROLL INTO MY WORLD ↓
+        <a href="#overview" className={styles.scroll} aria-label="Scroll to learn more about me">
+          <span className={styles.mouse} aria-hidden="true" />
         </a>
       </section>
-      <div className="techStrip" aria-label="Core technologies">
-        <span>REACT</span>
-        <i>✳</i>
-        <span>NEXT.JS</span>
-        <i>✳</i>
-        <span>JAVASCRIPT</span>
-        <i>✳</i>
-        <span>FRONTEND ARCHITECTURE</span>
-        <i>✳</i>
-        <span>AI-ENABLED APPLICATIONS</span>
-      </div>
+      <nav className={styles.skillButtons} aria-label="Core technologies">
+        {['React', 'Next.js', 'JavaScript', 'Frontend architecture', 'AI-enabled applications'].map(
+          (skill) => (
+            <Link key={skill} href="/expertise/" className={styles.skillButton}>
+              {skill}
+              <span aria-hidden="true">↗</span>
+            </Link>
+          ),
+        )}
+      </nav>
       <section className="section" id="overview">
         <div className="sectionHeading">
           <div>
@@ -105,23 +104,24 @@ export default function Home() {
             <br />
             feel <span className="accent">simple.</span>”<small>MY APPROACH TO ENGINEERING</small>
           </div>
-          <div>
+          <div className="narrativePanel">
+            <div className="narrativeHeader">
+              <Icon name="code" size={15} />
+              <span>about.md</span>
+              <small>THE PERSON BEHIND THE CODE</small>
+            </div>
             <p className="lead">
               I build at the intersection of thoughtful design and dependable engineering.
             </p>
-            <p>
-              From reusable enterprise components to modular frontend systems, my focus is on making
-              software easier to use, maintain, and evolve. I care about the details people feel: a
-              clear interaction, a fast response, a keyboard journey that simply works.
-            </p>
-            <p>
-              Based in Pune, with roots in Deoria, Uttar Pradesh, I bring approximately six years of
-              engineering experience across frontend development, automation, and testing.
-            </p>
+            <HomeNarrative initialSnapshot={getExperience()} />
             <div className="miniStats">
               <div>
-                <strong>~6 years</strong>
-                <span>Engineering experience</span>
+                <strong>
+                  <Experience />
+                </strong>
+                <span>
+                  Engineering experience · as of <Experience display="month" />
+                </span>
               </div>
               <div>
                 <strong>HCLSoftware</strong>
@@ -180,10 +180,13 @@ export default function Home() {
         </p>
         <Projects />
       </section>
-      <section className="section experienceSection">
+      <section className="section experienceSection" id="experience">
         <div className="sectionHeading">
           <div>
             <span className="eyebrow">04 / EXPERIENCE THAT SHAPES THE WORK</span>
+            <p className="experienceSummary">
+              <Experience /> · Started 18 January 2021 · As of <Experience display="month" />
+            </p>
             <h2>
               Enterprise scale.
               <br />
@@ -199,11 +202,11 @@ export default function Home() {
             <span className="eyebrow">HCLSOFTWARE · BIGFIX</span>
             <h3>Senior Software Engineer I</h3>
             <p className="lead">Building clearer interfaces for complex enterprise workflows.</p>
-            <p>
+            <ScrollTyping>
               My work spans reusable UI components, device management experiences, accessibility
               improvements, and maintainable React architecture. I collaborate through
               implementation planning, code reviews, and shared engineering decisions.
-            </p>
+            </ScrollTyping>
             <div className="tags">
               <span>Enterprise React</span>
               <span>Reusable UI</span>
@@ -216,11 +219,11 @@ export default function Home() {
           <div className="timelineLabel">THE FOUNDATION</div>
           <article>
             <h3>A broader engineering perspective</h3>
-            <p>
+            <ScrollTyping>
               Earlier experience in network engineering, enterprise automation, and Tosca-based
               end-to-end testing shaped how I think about reliability, systems, and the complete
               user journey.
-            </p>
+            </ScrollTyping>
           </article>
         </div>
         <Link className="textLink" href="/about/">

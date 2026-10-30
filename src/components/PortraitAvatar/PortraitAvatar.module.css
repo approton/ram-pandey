@@ -1,0 +1,114 @@
+.avatar {
+  display: none;
+}
+.lightbox {
+  position: fixed;
+  width: min(420px, calc(100vw - 36px));
+  max-width: none;
+  max-height: calc(100dvh - 60px);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  overflow: visible;
+  outline: none;
+  color: var(--text);
+}
+.lightbox::backdrop {
+  background: #050b18b8;
+  backdrop-filter: blur(12px);
+}
+.portrait {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: calc(100dvh - 80px);
+  object-fit: contain;
+  filter: drop-shadow(0 25px 35px #0008);
+  transform: perspective(950px) rotateY(-5deg);
+  animation: portraitPop 0.32s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  border: 1px solid #ffffff50;
+  border-radius: 50%;
+  background: #111b2be8;
+  color: #fff;
+  display: grid;
+  place-items: center;
+}
+.close:focus-visible {
+  outline: 3px solid var(--accent2);
+  outline-offset: 4px;
+}
+@keyframes portraitPop {
+  from {
+    opacity: 0;
+    transform: perspective(950px) translateY(12px) scale(0.94) rotateY(-12deg);
+  }
+  to {
+    opacity: 1;
+    transform: perspective(950px) translateY(0) scale(1) rotateY(-5deg);
+  }
+}
+@media (max-width: 760px) {
+  .avatar {
+    position: relative;
+    display: block;
+    flex: 0 0 76px;
+    width: 76px;
+    height: 76px;
+    border: 1px solid var(--glassEdge);
+    border-radius: 50%;
+    padding: 0;
+    overflow: hidden;
+    cursor: zoom-in;
+    touch-action: manipulation;
+    background: radial-gradient(
+      circle at 35% 25%,
+      color-mix(in srgb, var(--accent) 24%, var(--surface)),
+      var(--surface)
+    );
+    box-shadow: 0 9px 25px #0002;
+  }
+  .avatar > img {
+    position: absolute;
+    left: -22.5%;
+    top: 0;
+    display: block;
+    width: 145%;
+    height: 145%;
+    max-width: none;
+    object-fit: cover;
+    filter: none;
+  }
+  .indicator {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    display: grid;
+    place-items: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--surface);
+    color: var(--accent);
+  }
+}
+@media (max-width: 360px) {
+  .avatar {
+    width: 64px;
+    height: 64px;
+    flex-basis: 64px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .portrait {
+    animation: none;
+    transform: none;
+  }
+}

@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link';
 import { useState } from 'react';
 import { projects } from '@/data/profile';
 import Icon from '../Icon/Icon';
@@ -118,26 +119,26 @@ export default function Projects({ filterable = false, limit }) {
       <div className="projectsGrid">
         {shown.map((p) => (
           <article className="projectCard" key={p.slug}>
-            <a
+            <Link
               href={`/projects/${p.slug}/`}
               className="projectVisualLink"
               aria-label={`Explore ${p.title}`}
             >
               <ProjectVisual project={p} />
-            </a>
+            </Link>
             <div className="projectInfo">
               <span className="projectCategory">{p.category}</span>
               <div className="projectTitle">
                 <h3>
-                  <a href={`/projects/${p.slug}/`}>{p.title}</a>
+                  <Link href={`/projects/${p.slug}/`}>{p.title}</Link>
                 </h3>
-                <a
+                <Link
                   href={`/projects/${p.slug}/`}
                   className="roundArrow"
                   aria-label={`Read about ${p.title}`}
                 >
                   <Icon name="arrow" />
-                </a>
+                </Link>
               </div>
               <p className="projectLabel">{p.label}</p>
               <p>{p.description}</p>

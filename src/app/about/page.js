@@ -1,3 +1,9 @@
+import AboutNarrative from '@/components/ScrollTyping/AboutNarrative';
+import { getExperience } from '@/lib/experience.mjs';
+import PortraitAvatar from '@/components/PortraitAvatar/PortraitAvatar';
+import Link from 'next/link';
+import Experience from '@/components/Experience/Experience';
+import ScrollTyping from '@/components/ScrollTyping/ScrollTyping';
 import Image from 'next/image';
 import Icon from '@/components/Icon/Icon';
 import ContactActions, { SocialLinks } from '@/components/ContactActions/ContactActions';
@@ -21,11 +27,14 @@ export default function About() {
       <section className="pageHero aboutHero">
         <div>
           <span className="eyebrow">THE ENGINEER · THE PERSON · THE JOURNEY</span>
-          <h1>
-            More than
-            <br />
-            <em>a job title.</em>
-          </h1>
+          <div className="aboutHeadingRow">
+            <h1>
+              More than
+              <br />
+              <em>a job title.</em>
+            </h1>
+            <PortraitAvatar />
+          </div>
           <p>
             I’m Ram Niwash Pandey. I build frontend systems, solve product problems, and care about
             the person on the other side of the screen.
@@ -38,18 +47,16 @@ export default function About() {
             <span>HCLSoftware · BigFix</span>
           </div>
         </div>
-        <div className="aboutPortrait">
+        <figure className="aboutPortrait aboutDesktopPortrait">
           <Image
-            src="/images/profile/ram-pandey.webp"
-            width={520}
-            height={580}
-            alt="Ram Niwash Pandey in a professional office setting"
+            src="/images/profile/ram-pandey-cutout.png"
+            width={1254}
+            height={1254}
+            alt="Ram Niwash Pandey, portrait in a dark suit"
             priority
           />
-          <span>
-            RAM NIWASH PANDEY <i>↗</i>
-          </span>
-        </div>
+          <figcaption className="srOnly">Ram Niwash Pandey, Senior Software Engineer.</figcaption>
+        </figure>
       </section>
       <div className="detailLayout">
         <aside className="contents">
@@ -77,23 +84,7 @@ export default function About() {
             <p className="lead">
               My work sits between product intent and the engineering decisions that make it real.
             </p>
-            <p>
-              I’m a software engineer based in Pune, Maharashtra, originally from Deoria, Uttar
-              Pradesh. My professional focus is modern frontend engineering: scalable React
-              applications, reusable UI architecture, accessibility, and maintainable systems.
-            </p>
-            <p>
-              With approximately six years of professional engineering experience as of October
-              2026, I’ve worked across software development, network engineering, enterprise
-              automation, and end-to-end testing. That wider perspective shapes how I think about an
-              application: as a complete system of interactions, responsibilities, and feedback.
-            </p>
-            <p>
-              I enjoy translating complex requirements into interfaces that feel clear. The
-              challenge is rarely just writing a component. It is understanding what the component
-              needs to communicate, how it behaves within a larger workflow, and how another
-              engineer will maintain it later.
-            </p>
+            <AboutNarrative initialSnapshot={getExperience()} />
             <div className="profileFacts">
               <div>
                 <small>BASED IN</small>
@@ -109,7 +100,12 @@ export default function About() {
               </div>
               <div>
                 <small>EXPERIENCE</small>
-                <strong>Approximately 6 years</strong>
+                <strong>
+                  <Experience />
+                </strong>
+                <span className="experienceAsOf">
+                  As of <Experience display="month" />
+                </span>
               </div>
             </div>
           </section>
@@ -124,12 +120,12 @@ export default function About() {
               I currently work as a Senior Software Engineer I at HCLSoftware, contributing to
               BigFix.
             </p>
-            <p>
+            <ScrollTyping>
               My role includes enterprise frontend engineering, reusable component architecture,
               accessibility improvements, UI modernization, and scalable React application patterns.
               I work on the interactions that connect complex device-management capabilities to the
               people using them.
-            </p>
+            </ScrollTyping>
             <div className="detailCardGrid">
               {[
                 [
@@ -156,7 +152,7 @@ export default function About() {
                 <article className="glassCard" key={title}>
                   <Icon name={icon} size={27} />
                   <h3>{title}</h3>
-                  <p>{body}</p>
+                  <ScrollTyping>{body}</ScrollTyping>
                 </article>
               ))}
             </div>
@@ -167,6 +163,9 @@ export default function About() {
           </section>
           <section id="experience">
             <span className="eyebrow">03 / EXPERIENCE</span>
+            <p className="experienceSummary">
+              <Experience /> · Started 18 January 2021 · As of <Experience display="month" />
+            </p>
             <h2>
               A foundation built
               <br />
@@ -179,11 +178,11 @@ export default function About() {
                 <small>HCLSoftware · BigFix</small>
               </div>
               <h3>Senior Software Engineer I</h3>
-              <p>
+              <ScrollTyping>
                 Enterprise frontend engineering, component design, accessibility, and maintainable
                 React applications. Working with engineering teams to turn implementation
                 requirements into consistent user experiences.
-              </p>
+              </ScrollTyping>
               <div className="tags">
                 <span>React</span>
                 <span>Enterprise UI</span>
@@ -198,12 +197,12 @@ export default function About() {
                 <small>Engineering foundations</small>
               </div>
               <h3>Systems, automation & software</h3>
-              <p>
+              <ScrollTyping>
                 Earlier work includes network engineering, enterprise automation, Tosca-based
                 end-to-end testing, and software engineering. Those experiences strengthened my
                 attention to reliability, repeatable workflows, debugging, and the end-to-end
                 behavior of a system.
-              </p>
+              </ScrollTyping>
             </div>
             <div className="careerItem">
               <span className="careerDot" />
@@ -212,15 +211,15 @@ export default function About() {
                 <small>Building beyond the day job</small>
               </div>
               <h3>Developer tools & product exploration</h3>
-              <p>
+              <ScrollTyping>
                 Vyom explores developer automation. The Watcher brings production rules and
                 code-quality checks into development. Income Tax Calculator is a standalone web
                 utility, while Omnext explores modular business software. ApplyPilot represents an
                 AI-assisted product direction.
-              </p>
-              <a href="/projects/" className="textLink">
+              </ScrollTyping>
+              <Link href="/projects/" className="textLink">
                 Explore the projects <Icon name="arrow" size={17} />
-              </a>
+              </Link>
             </div>
           </section>
           <section id="principles">

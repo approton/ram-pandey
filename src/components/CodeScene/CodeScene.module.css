@@ -39,11 +39,8 @@
     0 25px 35px #02040e70,
     0 50px 75px #4e55f43b,
     inset 0 1px 0 #ffffff35;
-  transform:
-    rotateX(calc(9deg + var(--tilt-x, 0deg)))
-    rotateY(calc(-11deg + var(--tilt-y, 0deg)))
-    rotateZ(-1deg)
-    translateZ(16px);
+  transform: rotateX(calc(9deg + var(--tilt-x, 0deg))) rotateY(calc(-11deg + var(--tilt-y, 0deg)))
+    rotateZ(-1deg) translateZ(16px);
   transform-style: preserve-3d;
   transition:
     transform 220ms cubic-bezier(0.2, 0.75, 0.2, 1),
@@ -87,7 +84,9 @@
 }
 .workspaceName {
   color: #b7c0e0;
-  font: 9px var(--font-geist-mono), monospace;
+  font:
+    9px var(--font-geist-mono),
+    monospace;
   letter-spacing: 0.02em;
 }
 .workspaceName span {
@@ -100,7 +99,9 @@
   gap: 5px;
   margin-left: auto;
   color: #8de8d0;
-  font: 7px var(--font-geist-mono), monospace;
+  font:
+    7px var(--font-geist-mono),
+    monospace;
   letter-spacing: 0.12em;
 }
 .liveIndicator i,
@@ -122,7 +123,9 @@
   border-radius: 5px;
   color: #d3ccff;
   background: #9c92ff18;
-  font: 7px var(--font-geist-mono), monospace;
+  font:
+    7px var(--font-geist-mono),
+    monospace;
   letter-spacing: 0.06em;
   transition:
     color 160ms ease,
@@ -144,7 +147,9 @@
   border-radius: 5px;
   color: #a4f6d4;
   background: #49d9a51a;
-  font: 7px var(--font-geist-mono), monospace;
+  font:
+    7px var(--font-geist-mono),
+    monospace;
   letter-spacing: 0.08em;
   transition:
     color 160ms ease,
@@ -180,7 +185,9 @@
   border-right: 1px solid #ffffff0c;
   border-top: 1px solid #9a8bff;
   color: #d7ddf6;
-  font: 8px var(--font-geist-mono), monospace;
+  font:
+    8px var(--font-geist-mono),
+    monospace;
   white-space: nowrap;
 }
 .languageDot {
@@ -204,7 +211,9 @@
   border-radius: 4px;
   color: #818ca9;
   background: transparent;
-  font: 7px var(--font-geist-mono), monospace;
+  font:
+    7px var(--font-geist-mono),
+    monospace;
   transition:
     color 160ms ease,
     border-color 160ms ease,
@@ -222,9 +231,7 @@
 .codeArea {
   min-height: 168px;
   display: flex;
-  background:
-    radial-gradient(ellipse at 82% 0%, #5550ad14, transparent 50%),
-    #101629;
+  background: radial-gradient(ellipse at 82% 0%, #5550ad14, transparent 50%), #101629;
 }
 .activityRail {
   width: 30px;
@@ -236,7 +243,9 @@
   padding-top: 12px;
   border-right: 1px solid #ffffff0c;
   color: #7380a1;
-  font: 11px var(--font-geist-mono), monospace;
+  font:
+    11px var(--font-geist-mono),
+    monospace;
 }
 .activityRail span:first-child {
   color: #c1a8ff;
@@ -247,7 +256,9 @@
   padding: 12px 0;
   overflow: auto;
   color: #d8ddf6;
-  font: 9px/1.9 var(--font-geist-mono), monospace;
+  font:
+    9px/1.9 var(--font-geist-mono),
+    monospace;
 }
 .codeLine {
   display: grid;
@@ -337,7 +348,9 @@
   padding: 0 10px;
   color: #b6c1e2;
   background: linear-gradient(90deg, #625be2, #427fbd 72%, #378eaa);
-  font: 7px var(--font-geist-mono), monospace;
+  font:
+    7px var(--font-geist-mono),
+    monospace;
   letter-spacing: 0.03em;
 }
 .statusbar span {
@@ -365,7 +378,9 @@
   border-top: 0 solid #ffffff10;
   color: #9eabc9;
   background: #0c1222;
-  font: 8px var(--font-geist-mono), monospace;
+  font:
+    8px var(--font-geist-mono),
+    monospace;
   opacity: 0;
   transition:
     height 220ms ease,
@@ -441,9 +456,7 @@
   }
   .editor {
     width: min(100%, 430px);
-    transform:
-      rotateX(calc(7deg + var(--tilt-x, 0deg)))
-      rotateY(calc(-7deg + var(--tilt-y, 0deg)))
+    transform: rotateX(calc(7deg + var(--tilt-x, 0deg))) rotateY(calc(-7deg + var(--tilt-y, 0deg)))
       rotateZ(-0.5deg);
   }
   .codeArea {
@@ -516,4 +529,198 @@
   .cursor {
     animation: none;
   }
+}
+/* Keep the IDE as a quiet engineering detail rather than a floating game panel. */
+.editorStage {
+  animation: none;
+}
+.editor {
+  transform: rotateX(calc(4deg + var(--tilt-x, 0deg))) rotateY(calc(-5deg + var(--tilt-y, 0deg)))
+    translateZ(8px);
+}
+.editorStage:focus-within .editor {
+  transform: none;
+}
+.codeInput:focus-visible {
+  outline: none !important;
+  border: 0;
+  box-shadow: none !important;
+}
+.runButton,
+.editButton,
+.languageTab {
+  min-height: 32px;
+}
+@media (max-width: 800px) {
+  .editor {
+    transform: rotateX(3deg) rotateY(-3deg);
+  }
+  .editorStage:focus-within .editor {
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .editor {
+    transform: none;
+    transition: none;
+  }
+  .cursor {
+    display: none;
+  }
+}
+
+/* More breathing room for code while retaining the compact IDE proportions. */
+.scene {
+  min-height: 490px;
+}
+.editorStage {
+  inset: 42px 4% 64px;
+}
+.editor {
+  width: min(100%, 460px);
+}
+.codeArea {
+  min-height: 215px;
+}
+.titlebar {
+  height: 42px;
+}
+@media (max-width: 800px) {
+  .scene {
+    height: 365px;
+    min-height: 365px;
+  }
+  .editorStage {
+    inset: 20px 0 42px;
+  }
+  .codeArea {
+    min-height: 180px;
+  }
+}
+
+/* Use identical line boxes for the syntax layer and native editing caret. */
+.codeLines {
+  line-height: 18px;
+}
+.codeLine {
+  height: 18px;
+  min-height: 18px;
+}
+.codeLine code {
+  line-height: 18px;
+}
+.codeInput {
+  line-height: 18px;
+}
+.cursor {
+  height: 1em;
+  vertical-align: -0.15em;
+}
+/* Trim unused scene space while keeping the larger code area. */
+.scene {
+  min-height: 395px;
+}
+.editorStage {
+  inset: 12px 4% 42px;
+}
+@media (max-width: 800px) {
+  .scene {
+    height: 335px;
+    min-height: 335px;
+  }
+  .editorStage {
+    inset: 8px 0 32px;
+  }
+}
+
+.profileView {
+  min-height: 312px;
+  color: #d8ddf6;
+}
+.profileTitle {
+  padding: 14px 16px;
+  border-bottom: 1px solid #ffffff20;
+  color: #b7aaff;
+  font:
+    11px var(--font-geist-mono),
+    monospace;
+}
+.profileBody {
+  display: grid;
+  grid-template-columns: 30% minmax(0, 1fr);
+  gap: 14px;
+  padding: 18px 16px;
+  align-items: center;
+}
+.profileBody img {
+  width: 100%;
+  height: 210px;
+  object-fit: contain;
+}
+.profileBody h3 {
+  font-size: 17px;
+  margin: 0 0 12px;
+  color: #fff;
+}
+.profileBody .profileCopy {
+  font:
+    12px/1.8 var(--font-geist-mono),
+    monospace;
+  color: #d8ddf6;
+  margin: 0 0 12px;
+}
+.profileBody a {
+  font:
+    12px var(--font-geist-mono),
+    monospace;
+  color: #b7aaff;
+}
+@media (max-width: 800px) {
+  .profileView {
+    min-height: 277px;
+  }
+  .profileBody {
+    gap: 10px;
+    padding: 12px;
+  }
+  .profileBody .profileCopy {
+    font-size: 10px;
+  }
+  .profileBody h3 {
+    font-size: 14px;
+  }
+  .profileBody img {
+    height: 180px;
+  }
+}
+
+/* Render the portrait and biography on a flat, crisp surface while open. */
+.editor[data-profile='true'] {
+  transform: none;
+  transition: none;
+  background: #edf0f8;
+  border-color: #cbd2e2;
+}
+.profileView {
+  background: #edf0f8;
+  color: #25314b;
+}
+.profileTitle {
+  color: #4543a0;
+  border-color: #cbd2e2;
+}
+.profileBody h3 {
+  color: #17213a;
+}
+.profileBody .profileCopy {
+  color: #28344e;
+  font-weight: 500;
+}
+.profileBody a {
+  color: #4543a0;
+}
+.profileBody img {
+  transform: none;
+  filter: none;
+  opacity: 1;
 }

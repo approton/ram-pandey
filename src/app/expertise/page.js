@@ -1,3 +1,5 @@
+import Link from 'next/link';
+import ScrollTyping from '@/components/ScrollTyping/ScrollTyping';
 import Icon from '@/components/Icon/Icon';
 import { expertise } from '@/data/profile';
 export const metadata = {
@@ -151,7 +153,7 @@ export default function Expertise() {
                 <span className="accent">.</span>
               </h2>
               <p className="lead">{d.intro}</p>
-              <p>{d.body}</p>
+              <ScrollTyping>{d.body}</ScrollTyping>
               <div className="capabilityList">
                 {d.details.map((t, j) => (
                   <article key={t}>
@@ -191,9 +193,9 @@ export default function Expertise() {
               Depth varies by tool and project. Tool familiarity is distinct from specialist
               expertise or production ownership.
             </p>
-            <a className="button primary" href="/contact/">
+            <Link className="button primary" href="/contact/">
               Discuss your engineering challenge <Icon name="arrow" />
-            </a>
+            </Link>
           </section>
         </div>
       </div>

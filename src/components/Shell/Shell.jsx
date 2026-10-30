@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Icon from '../Icon/Icon';
@@ -50,7 +51,7 @@ export default function Shell({ children }) {
         Skip to content
       </a>
       <header className={`header ${scrolled ? 'headerScrolled' : ''}`}>
-        <a href="/" className="brand" aria-label="Ram Pandey home">
+        <Link href="/" className="brand" aria-label="Ram Pandey home">
           <span className="monogram">
             r<span>p</span>
             <i>·</i>
@@ -58,7 +59,7 @@ export default function Shell({ children }) {
           <span>
             RAM PANDEY<span className="brandSubtitle">ENGINEERING WITH INTENT</span>
           </span>
-        </a>
+        </Link>
         <nav id="main-navigation" aria-label="Main navigation" className="nav">
           {[
             ['/', 'Home'],
@@ -67,7 +68,7 @@ export default function Shell({ children }) {
             ['/projects/', 'Projects'],
             ['/services/', 'Services'],
           ].map(([url, label]) => (
-            <a
+            <Link
               key={url}
               href={url}
 
@@ -82,14 +83,14 @@ export default function Shell({ children }) {
               }
             >
               {label}
-            </a>
+            </Link>
           ))}
         </nav>
         <div className="headerActions">
           <ThemeToggle />
-          <a className="smallCta" href="/contact/">
+          <Link className="smallCta" href="/contact/">
             Let’s talk <Icon name="arrow" size={17} />
-          </a>
+          </Link>
           <details ref={mobileNavigation} className="mobileNavigation">
             <summary aria-label="Open mobile navigation">
               <Icon name="menu" />
@@ -105,10 +106,17 @@ export default function Shell({ children }) {
                 ['/services/', 'Services'],
                 ['/contact/', 'Contact'],
               ].map(([url, label]) => (
-                <a key={url} href={url} aria-current={path === url ? 'page' : undefined}>
+                <Link
+                  key={url}
+                  href={url}
+                  aria-current={path === url ? 'page' : undefined}
+                  onClick={() => {
+                    if (mobileNavigation.current) mobileNavigation.current.open = false;
+                  }}
+                >
                   {label}
                   <Icon name="arrow" size={17} />
-                </a>
+                </Link>
               ))}
             </nav>
           </details>
@@ -118,16 +126,16 @@ export default function Shell({ children }) {
       <footer>
         <div className="footerTop">
           <div>
-            <a href="/" className="footerName">
+            <Link href="/" className="footerName">
               Ram Pandey<span className="accent">.</span>
-            </a>
+            </Link>
             <p>Thoughtful systems. Meaningful experiences.</p>
           </div>
           <div className="footerNav">
-            <a href="/about/">About</a>
-            <a href="/projects/">Projects</a>
-            <a href="/services/">Services</a>
-            <a href="/contact/">Contact</a>
+            <Link href="/about/">About</Link>
+            <Link href="/projects/">Projects</Link>
+            <Link href="/services/">Services</Link>
+            <Link href="/contact/">Contact</Link>
           </div>
           <SocialLinks />
         </div>

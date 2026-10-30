@@ -1,3 +1,5 @@
+import Script from 'next/script';
+import { themeBootstrap } from '@/lib/theme-bootstrap.mjs';
 import localFont from 'next/font/local';
 import Shell from '@/components/Shell/Shell';
 import './globals.css';
@@ -26,17 +28,19 @@ export const metadata = {
 };
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${sans.variable} ${mono.variable}`}>
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `let savedTheme;try{savedTheme=localStorage.getItem('ram-theme')}catch{}const useLightTheme=savedTheme==='light'||(savedTheme!=='dark'&&matchMedia('(prefers-color-scheme: light)').matches);document.documentElement.dataset.theme=useLightTheme?'light':'dark';`,
-          }}
-        />
-      </head>
+    <html
+      lang="en"
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+      className={`${sans.variable} ${mono.variable}`}
+    >
       <body>
+        <Script id="theme-initializer" strategy="beforeInteractive">
+          {themeBootstrap}
+        </Script>
         <Shell>{children}</Shell>
         <script
+          id="person-jsonld"
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
@@ -50,7 +54,7 @@ export default function RootLayout({ children }) {
                 'https://www.linkedin.com/in/ram-niwash-pandey-2580ab172/',
               ],
               image: origin + '/images/profile/ram-pandey.webp',
-            }),
+            }).replace(/</g, '\\u003c'),
           }}
         />
       </body>

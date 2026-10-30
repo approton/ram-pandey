@@ -2746,3 +2746,24 @@ body {
     background: color-mix(in srgb, var(--surface) 97%, transparent);
   }
 }
+/* Readable identity text in the desktop navigation. */
+.brand {
+  font-size: 13px;
+  letter-spacing: 0.055em;
+}
+.brandSubtitle {
+  font-size: 11px;
+  line-height: 1.45;
+  letter-spacing: 0.045em;
+  color: var(--text);
+  opacity: 0.82;
+  margin-top: 4px;
+}
+@media (min-width: 931px) and (max-width: 1150px) {
+  .brand {
+    font-size: 13px;
+  }
+  .brandSubtitle {
+    font-size: 10px;
+  }
+}

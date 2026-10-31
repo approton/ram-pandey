@@ -1,4 +1,4 @@
-/** Runs before hydration; local scope also makes repeated evaluation safe in development. */
+/** Runs synchronously in the document head before body paint; local scope also makes repeated evaluation safe in development. */
 export const themeBootstrap = `(() => {
   let savedTheme;
   try { savedTheme = localStorage.getItem('ram-theme'); } catch {}

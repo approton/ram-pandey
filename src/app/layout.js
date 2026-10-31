@@ -1,5 +1,3 @@
-import Script from 'next/script';
-import { themeBootstrap } from '@/lib/theme-bootstrap.mjs';
 import localFont from 'next/font/local';
 import Shell from '@/components/Shell/Shell';
 import './globals.css';
@@ -34,10 +32,11 @@ export default function RootLayout({ children }) {
       suppressHydrationWarning
       className={`${sans.variable} ${mono.variable}`}
     >
+      <head>
+        {/* React hoists this external resource; render blocking prevents a theme flash. */}
+        <script id="theme-initializer" src="/theme-init.js" async blocking="render" />
+      </head>
       <body>
-        <Script id="theme-initializer" strategy="beforeInteractive">
-          {themeBootstrap}
-        </Script>
         <Shell>{children}</Shell>
         <script
           id="person-jsonld"

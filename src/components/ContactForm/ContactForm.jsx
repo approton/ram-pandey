@@ -1,5 +1,5 @@
 'use client';
-import { useId, useRef, useState } from 'react';
+import { useEffect, useId, useRef, useState } from 'react';
 import Icon from '../Icon/Icon';
 import styles from './ContactForm.module.css';
 function Line({ number, children, active = false }) {
@@ -22,11 +22,31 @@ function Tag({ children }) {
 export default function ContactForm() {
   const id = useId();
   const form = useRef(null);
-  const [values, setValues] = useState({ name: '', email: '', message: '' });
+  const [values, setValues] = useState({ name: '', email: '', mobile: '', message: '' });
   const [state, setState] = useState('idle');
   const [error, setError] = useState('');
   const [focused, setFocused] = useState('');
   const [preview, setPreview] = useState(false);
+  useEffect(() => {
+    const section = form.current?.closest('.contactSection');
+    const introduction = section?.firstElementChild;
+    if (!introduction) return;
+    const measure = () => {
+      // A tall introduction must pin by its bottom edge; otherwise its
+      // containing section releases it before the submit area is visible.
+      const top = Math.min(112, window.innerHeight - introduction.offsetHeight - 24);
+      section.style.setProperty('--contact-sticky-top', `${top}px`);
+    };
+    const observer = new ResizeObserver(measure);
+    observer.observe(introduction);
+    window.addEventListener('resize', measure);
+    measure();
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('resize', measure);
+      section.style.removeProperty('--contact-sticky-top');
+    };
+  }, []);
   const update = (e) => setValues((v) => ({ ...v, [e.target.name]: e.target.value }));
   async function submit(e) {
     e.preventDefault();
@@ -43,6 +63,7 @@ export default function ContactForm() {
         body: JSON.stringify({
           name: values.name.trim(),
           email: values.email.trim(),
+          mobile: values.mobile.trim(),
           message: values.message.trim(),
           _subject: 'Portfolio — new message for Ram',
           _template: 'table',
@@ -53,7 +74,7 @@ export default function ContactForm() {
       if (!response.ok || !(result.success === true || result.success === 'true'))
         throw new Error('Not accepted');
       setState('accepted');
-      setValues({ name: '', email: '', message: '' });
+      setValues({ name: '', email: '', mobile: '', message: '' });
     } catch {
       setState('error');
       setError(
@@ -165,7 +186,7 @@ export default function ContactForm() {
         </Line>
         <Line number="07">
           <span className={styles.indent} />
-          <Tag>&lt;address&gt;</Tag>
+          <Tag>&lt;email&gt;</Tag>
           <span className={styles.fieldHint} aria-hidden="true">
             YOUR EMAIL ↓
           </span>
@@ -186,16 +207,42 @@ export default function ContactForm() {
         </Line>
         <Line number="09">
           <span className={styles.indent} />
-          <Tag>&lt;/address&gt;</Tag>
+          <Tag>&lt;/email&gt;</Tag>
         </Line>
         <Line number="10">
+          <span className={styles.indent} />
+          <Tag>&lt;mobile&gt;</Tag>
+          <span className={styles.fieldHint} aria-hidden="true">
+            YOUR MOBILE (OPTIONAL) ↓
+          </span>
+        </Line>
+        <Line number="11" active={focused === 'mobile'}>
+          <label className="srOnly" htmlFor={`${id}-mobile`}>
+            Mobile number (optional)
+          </label>
+          <input
+            className={styles.input}
+            {...fieldProps('mobile')}
+            required={false}
+            type="tel"
+            inputMode="tel"
+            autoComplete="tel"
+            placeholder="+91 98765 43210"
+            maxLength={30}
+          />
+        </Line>
+        <Line number="12">
+          <span className={styles.indent} />
+          <Tag>&lt;/mobile&gt;</Tag>
+        </Line>
+        <Line number="13">
           <span className={styles.indent} />
           <Tag>&lt;p&gt;</Tag>
           <span className={styles.fieldHint} aria-hidden="true">
             YOUR MESSAGE ↓
           </span>
         </Line>
-        <Line number="11" active={focused === 'message'}>
+        <Line number="14" active={focused === 'message'}>
           <label className="srOnly" htmlFor={`${id}-message`}>
             Your message
           </label>
@@ -205,14 +252,14 @@ export default function ContactForm() {
             placeholder="Hi Ram! I’d like to talk about…"
             minLength={10}
             maxLength={5000}
-            rows={4}
+            rows={2}
           />
         </Line>
-        <Line number="12">
+        <Line number="15">
           <span className={styles.indent} />
           <Tag>&lt;/p&gt;</Tag>
         </Line>
-        <Line number="13">
+        <Line number="16">
           <Tag>&lt;/article&gt;</Tag>
         </Line>
       </div>
@@ -234,6 +281,7 @@ export default function ContactForm() {
           </span>
           <h4>{values.name || 'Your name will appear here'}</h4>
           <p className={styles.previewEmail}>{values.email || 'your@email.com'}</p>
+          {values.mobile && <p className={styles.previewEmail}>Mobile: {values.mobile}</p>}
           <p className={styles.previewMessage}>
             {values.message || 'Your message will appear here as you type.'}
           </p>

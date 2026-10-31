@@ -33,7 +33,7 @@ export default function ProjectPage() {
           </a>
         </div>
       </section>
-      <section className="section detailProject">
+      <section className="section detailProject" id="projects">
         <Projects filterable />
       </section>
       <section className="section projectInvite">

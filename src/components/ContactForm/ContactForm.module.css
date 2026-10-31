@@ -433,3 +433,119 @@
     transition: none;
   }
 }
+
+/* Compact editor: preserve usable fields while reducing decorative line spacing. */
+.toolbar {
+  padding: 8px 16px;
+}
+.fileTab {
+  padding: 8px 16px;
+}
+.intro {
+  padding: 12px 20px 10px;
+}
+.intro h3 {
+  font-size: 21px;
+  margin: 0 0 4px;
+}
+.editor {
+  padding-bottom: 8px;
+  line-height: 1.4;
+}
+.line {
+  min-height: 18px;
+}
+.number {
+  padding-top: 1px;
+}
+.input,
+.textarea {
+  margin-top: 2px;
+  margin-bottom: 4px;
+  padding: 7px 10px;
+  line-height: 1.5;
+}
+.textarea {
+  min-height: 78px;
+}
+.editorStatus {
+  padding: 6px 16px;
+}
+.submitArea {
+  padding: 12px 20px 6px;
+  gap: 12px;
+  flex-wrap: nowrap;
+}
+.submitArea button {
+  width: auto;
+  min-height: 44px;
+  padding: 10px 16px;
+}
+.shortcut {
+  margin-top: 4px;
+}
+.deliveryNote {
+  margin: 6px 0 12px;
+  line-height: 1.5;
+}
+.livePreview {
+  padding: 16px;
+  margin: 12px 16px 0;
+}
+.livePreview h4 {
+  margin-top: 12px;
+}
+@media (max-width: 480px) {
+  .intro {
+    padding: 12px 16px 8px;
+  }
+  .input,
+  .textarea {
+    font-size: 16px;
+  }
+  .submitArea {
+    padding-inline: 16px;
+  }
+  .submitArea > div {
+    display: none;
+  }
+  .submitArea button {
+    width: 100%;
+  }
+}
+
+/* The document owns scrolling; the form has no nested scroll container. */
+.ide {
+  max-height: none;
+  overflow: clip;
+}
+
+/* Compact spacing on every screen, without a nested scrollbar. */
+.editor {
+  line-height: 1.35;
+  padding-bottom: 6px;
+}
+.line {
+  min-height: 17px;
+}
+.input,
+.textarea {
+  margin-top: 2px;
+  margin-bottom: 3px;
+  padding: 6px 10px;
+}
+.textarea {
+  min-height: 70px;
+}
+.toolbar {
+  padding-block: 6px;
+}
+.intro {
+  padding-block: 9px 7px;
+}
+.submitArea {
+  padding-top: 9px;
+}
+.deliveryNote {
+  margin-bottom: 9px;
+}

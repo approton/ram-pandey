@@ -1,3 +1,4 @@
+import QuoteCloud from '@/components/QuoteCloud/QuoteCloud';
 import ContactForm from '@/components/ContactForm/ContactForm';
 import ContactActions, { SocialLinks } from '@/components/ContactActions/ContactActions';
 import Icon from '@/components/Icon/Icon';
@@ -10,17 +11,20 @@ export const metadata = {
 export default function Contact() {
   return (
     <>
-      <section className="pageHero">
-        <span className="eyebrow">A GOOD CONVERSATION CAN CHANGE EVERYTHING</span>
-        <h1>
-          Let’s make
-          <br />
-          <em>something happen.</em>
-        </h1>
-        <p>
-          A product idea, an engineering challenge, or a team worth building with. Tell me what’s on
-          your mind.
-        </p>
+      <section className="pageHero contactHeroWithQuote">
+        <div>
+          <span className="eyebrow">A GOOD CONVERSATION CAN CHANGE EVERYTHING</span>
+          <h1>
+            Let’s make
+            <br />
+            <em>something happen.</em>
+          </h1>
+          <p>
+            A product idea, an engineering challenge, or a team worth building with. Tell me what’s
+            on your mind.
+          </p>
+        </div>
+        <QuoteCloud />
       </section>
       <section className="section contactSection contactPage">
         <div>
@@ -49,8 +53,8 @@ export default function Contact() {
             </div>
           </div>
           <p className="subtleNote">
-            The form sends your name, email, and message through FormSubmit to my inbox. No mailing
-            list or account is created.
+            The form sends your name, email, optional mobile number, and message through FormSubmit
+            to my inbox. No mailing list or account is created.
           </p>
         </div>
         <ContactForm />

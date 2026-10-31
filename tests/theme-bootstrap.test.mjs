@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import vm from 'node:vm';
@@ -34,4 +35,19 @@ test('saved preferences override the system and blocked storage falls back safel
     vm.runInContext(themeBootstrap, context);
     assert.equal(context.document.documentElement.dataset.theme, expected);
   }
+});
+
+test('the browser theme resource matches the tested initializer', () => {
+  const script = readFileSync(new URL('../public/theme-init.js', import.meta.url), 'utf8');
+  // Formatting may differ; both resources must produce the same saved-theme result.
+  for (const saved of ['light', 'dark', null]) {
+    const context = vm.createContext(environment(saved, true));
+    vm.runInContext(script, context);
+    assert.equal(
+      context.document.documentElement.dataset.theme,
+      saved === 'dark' ? 'dark' : 'light',
+    );
+  }
+  const layout = readFileSync(new URL('../src/app/layout.js', import.meta.url), 'utf8');
+  assert.match(layout, /src="\/theme-init.js" async blocking="render"/);
 });

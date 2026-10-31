@@ -3001,3 +3001,151 @@ html[data-theme='light'] .theme .themeMoon {
     display: none;
   }
 }
+
+/* Like the About contents menu: pin the left column within its section. */
+@media (min-width: 801px) and (min-height: 700px) {
+  .contactSection {
+    align-items: start;
+  }
+  .contactSection > div:first-child {
+    position: sticky;
+    top: var(--contact-sticky-top, 112px);
+    align-self: start;
+  }
+}
+
+.contactHeroWithQuote {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(320px, 1fr);
+  gap: 48px;
+  align-items: center;
+}
+.contactHeroWithQuote h1 {
+  font-size: clamp(44px, 5vw, 78px);
+}
+.quoteCloud {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  min-width: 0;
+  padding: 100px 18% 106px;
+  margin-bottom: 30px;
+  transform: perspective(1100px) rotateY(-7deg) rotateX(3deg);
+  transition: transform 0.35s ease;
+  --cloud-fill: #7c86d226;
+  --cloud-outline: #b9c0ff9c;
+}
+.quoteCloud:hover,
+.quoteCloud:focus-within {
+  transform: perspective(1100px) rotateY(-2deg) rotateX(1deg) translateY(-4px);
+}
+.thoughtCloudShape {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  z-index: -1;
+  pointer-events: none;
+  filter: drop-shadow(0 5px 0 #6370b82b) drop-shadow(0 16px 24px #0004);
+}
+.thoughtCloudShape path {
+  fill: var(--cloud-fill);
+  stroke: var(--cloud-outline);
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+}
+.thoughtCloudContent {
+  position: relative;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.quoteCloud .eyebrow {
+  display: block;
+  font-size: 10px;
+  line-height: 1.7;
+  color: var(--accent);
+}
+.quoteCloud blockquote {
+  margin: 18px 0 24px;
+  color: var(--text);
+  font-size: clamp(20px, 1.8vw, 28px);
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: -0.025em;
+  animation: quoteAppear 0.3s ease;
+}
+.quoteNext {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--cloud-outline);
+  padding: 10px 0;
+  min-height: 44px;
+  color: var(--accent);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+.quoteNext:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 5px;
+}
+.thoughtBubble {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid var(--cloud-outline);
+  background: var(--cloud-fill);
+  pointer-events: none;
+  box-shadow: 0 4px 8px #0002;
+}
+.thoughtBubbleLarge {
+  width: 31px;
+  height: 24px;
+  bottom: 9px;
+  left: 18%;
+  transform: rotate(-22deg);
+}
+.thoughtBubbleSmall {
+  width: 14px;
+  height: 12px;
+  bottom: -16px;
+  left: 11%;
+}
+:root[data-theme='light'] .quoteCloud {
+  --cloud-fill: #ffffff45;
+  --cloud-outline: #6962bca6;
+}
+@keyframes quoteAppear {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (max-width: 950px) {
+  .contactHeroWithQuote {
+    grid-template-columns: 1fr;
+  }
+  .quoteCloud {
+    max-width: 550px;
+    justify-self: center;
+    transform: none;
+  }
+}
+@media (max-width: 480px) {
+  .quoteCloud {
+    padding: 88px 17% 96px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .quoteCloud,
+  .quoteCloud:hover,
+  .quoteCloud:focus-within {
+    transform: none;
+    transition: none;
+  }
+  .quoteCloud blockquote {
+    animation: none;
+  }
+}

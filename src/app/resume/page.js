@@ -61,7 +61,13 @@ export default function ResumePage() {
           <address>
             {resume.contacts.map((c) =>
               c.href ? (
-                <a key={c.label} href={c.href}>
+                <a
+                  key={c.label}
+                  href={c.href}
+                  {...(/^https?:\/\//i.test(c.href)
+                    ? { target: '_blank', rel: 'noopener noreferrer' }
+                    : {})}
+                >
                   {c.label}
                 </a>
               ) : (

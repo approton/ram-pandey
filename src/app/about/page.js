@@ -1,6 +1,7 @@
 import AboutNarrative from '@/components/ScrollTyping/AboutNarrative';
 import { getExperience } from '@/lib/experience.mjs';
 import PortraitAvatar from '@/components/PortraitAvatar/PortraitAvatar';
+import ResumeLink from '@/components/ResumeLink';
 import Link from 'next/link';
 import Experience from '@/components/Experience/Experience';
 import ScrollTyping from '@/components/ScrollTyping/ScrollTyping';
@@ -45,6 +46,9 @@ export default function About() {
             </span>
             <span>Senior Software Engineer I</span>
             <span>HCLSoftware · BigFix</span>
+          </div>
+          <div className="buttonRow resumeRow">
+            <ResumeLink />
           </div>
         </div>
         <figure className="aboutPortrait aboutDesktopPortrait">

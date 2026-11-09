@@ -1,0 +1,154 @@
+.viewer {
+  max-width: 860px;
+  margin: 24px auto 48px;
+  padding: 0 16px;
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.actions :is(button, a) {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 8px 16px;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--glassEdge);
+  border-radius: 8px;
+  font: inherit;
+  cursor: pointer;
+}
+.paper {
+  color-scheme: light;
+  color: #171717;
+  font:
+    14px/1.4 Arial,
+    sans-serif;
+  overflow-wrap: anywhere;
+}
+.sheet {
+  padding: clamp(20px, 5vw, 44px);
+  background: white;
+  box-shadow: 0 8px 32px #0002;
+  margin-bottom: 16px;
+}
+.heading,
+.entryHeading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+}
+.paper h1,
+.paper h2,
+.paper h3,
+.paper p {
+  color: inherit;
+  letter-spacing: normal;
+}
+.paper h1 {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+}
+.paper address {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+  font-size: 0.94em;
+  font-style: normal;
+  margin: 9px 0 16px;
+}
+.paper a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.paper h2 {
+  font-size: 1.1em;
+  line-height: 1.25;
+  text-transform: uppercase;
+  font-weight: 700;
+  border-bottom: 1px solid;
+  padding-bottom: 3px;
+  margin: 16px 0 6px;
+}
+.paper h3 {
+  font-size: 1em;
+  font-weight: 500;
+  margin: 0;
+}
+.paper p,
+.paper li {
+  font-size: inherit;
+  line-height: inherit;
+  margin: 0 0 3px;
+}
+.entryHeading {
+  justify-content: space-between;
+}
+.entry {
+  margin-bottom: 9px;
+}
+.paper ul {
+  padding-left: 1.25em;
+  margin: 3px 0 0;
+  list-style-type: '–  ';
+}
+.paper strong {
+  font-weight: 700;
+}
+@media print {
+  @page {
+    size: A4;
+    margin: 10mm;
+  }
+  .viewer {
+    margin: 0;
+    max-width: none;
+    padding: 0;
+  }
+  .actions,
+  body:has(.viewer) > :not(main) {
+    display: none !important;
+  }
+  body:has(.viewer) {
+    background: white;
+  }
+  .paper {
+    font:
+      9.5pt/1.24 Arial,
+      sans-serif;
+  }
+  .sheet {
+    box-shadow: none;
+    margin: 0;
+    padding: 0;
+  }
+  .sheet + .sheet {
+    break-before: page;
+  }
+  .paper h1 {
+    font-size: 16pt;
+  }
+  .paper h2 {
+    break-after: avoid;
+    margin-top: 9pt;
+  }
+  .paper li {
+    break-inside: avoid;
+  }
+  .entryHeading {
+    break-after: avoid;
+  }
+  .viewer .paper address {
+    margin: 5pt 0;
+  }
+  .paper p,
+  .paper li {
+    margin-bottom: 1pt;
+  }
+}

@@ -2945,6 +2945,100 @@ html[data-theme='light'] .theme .themeMoon {
   grid-template-columns: 1.1fr 0.9fr;
   gap: 55px;
 }
+.aboutHero .tags > span {
+  color: var(--text);
+  box-shadow:
+    inset 0 1px 0 var(--glassEdge),
+    0 2px 0 var(--line);
+}
+.resumeRow {
+  margin-block-start: 24px;
+}
+.headerResume {
+  display: grid;
+  place-items: center;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  color: var(--accent);
+  background: var(--glass);
+  border: 1px solid var(--glassEdge);
+  border-radius: 12px;
+}
+.headerResume:hover {
+  color: var(--text);
+  border-color: var(--accent);
+}
+.headerResume:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.resumeButton {
+  min-width: min(16rem, 100%);
+  position: relative;
+  --edge: color-mix(in srgb, var(--accent) 55%, var(--bg));
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  max-width: 100%;
+  box-shadow:
+    inset 0 1px 0 #fff6,
+    0 4px 0 var(--edge),
+    0 9px 20px var(--glow);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .resumeButton[data-visible]::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    border: 2px solid var(--accent);
+    animation: resumeHalo 12s ease-out infinite;
+  }
+  @keyframes resumeHalo {
+    from {
+      opacity: 0.9;
+      transform: scale(1);
+    }
+    10%,
+    100% {
+      opacity: 0;
+      transform: scale(1.12, 1.4);
+    }
+  }
+}
+.resumeButton small {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 11px;
+  white-space: nowrap;
+}
+.resumeButton:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 6px;
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .resumeButton:hover {
+    transform: perspective(640px) translateY(-3px) rotateX(5deg);
+    box-shadow:
+      inset 0 1px 0 #fff8,
+      0 6px 0 var(--edge),
+      0 14px 26px var(--glow);
+  }
+}
+.resumeButton:active {
+  transform: translateY(2px);
+  box-shadow:
+    inset 0 1px 0 #fff6,
+    0 1px 0 var(--edge);
+}
+@media (prefers-reduced-motion: reduce) {
+  .resumeButton,
+  .resumeButton:hover,
+  .resumeButton:active {
+    transition: none;
+    transform: none;
+  }
+}
 .aboutPortrait {
   width: min(100%, 540px);
   justify-self: center;

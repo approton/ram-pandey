@@ -4,6 +4,7 @@ export default function sitemap() {
   return [
     '',
     'about/',
+    'resume/',
     'expertise/',
     'projects/',
     'services/',

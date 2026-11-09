@@ -88,6 +88,15 @@ export default function Shell({ children }) {
         </nav>
         <div className="headerActions">
           <ThemeToggle />
+          <a
+            className="headerResume"
+            href="/Ram-Pandey-Resume.pdf"
+            download
+            aria-label="Download resume (PDF)"
+            title="Download resume (PDF)"
+          >
+            <Icon name="download" size={18} />
+          </a>
           <Link className="smallCta" href="/contact/">
             Let’s talk <Icon name="arrow" size={17} />
           </Link>

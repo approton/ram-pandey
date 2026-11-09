@@ -1,0 +1,174 @@
+{
+  "name": "Ram Niwash Pandey",
+  "title": "Sr. Frontend Developer",
+  "contacts": [
+    {
+      "label": "pandey.ram1397@gmail.com",
+      "href": "mailto:pandey.ram1397@gmail.com"
+    },
+    {
+      "label": "+91-8874913546",
+      "href": "tel:+918874913546"
+    },
+    {
+      "label": "Hinjewadi, Pune, MH, IN",
+      "href": null
+    },
+    {
+      "label": "github.com/approton",
+      "href": "https://github.com/approton"
+    },
+    {
+      "label": "linkedin.com/in/ram-niwash-pandey-2580ab172",
+      "href": "https://www.linkedin.com/in/ram-niwash-pandey-2580ab172/"
+    },
+    {
+      "label": "ram-pandey.vercel.app",
+      "href": "https://ram-pandey.vercel.app"
+    }
+  ],
+  "profile": [
+    "Frontend Developer with {experience} of experience building scalable, high-performance SaaS applications using React.js, JavaScript (ES6+), HTML, and CSS, along with modern UI frameworks like Material UI and Tailwind CSS. Currently working on BigFix, delivering user-centric features with a focus on performance optimization, accessibility (WCAG), reusable component architecture, REST API integration, and AI-driven development using ChatGPT and GitHub Copilot.",
+    "Experienced in developing data-intensive interfaces, optimizing rendering and state management for large-scale applications, and contributing to system design in product-driven environments. Proven ability to take end-to-end ownership of features, from requirement analysis to production deployment, ensuring reliable and maintainable solutions. Familiar with Node.js and Express.js for backend integration, with an emphasis on writing clean, production-ready code and following best engineering practices."
+  ],
+  "jobs": [
+    {
+      "organization": "HCL Software",
+      "role": "Sr. Software Engineer I",
+      "dates": "07/2025 – Present",
+      "location": "Pune",
+      "bullets": [
+        "Developed scalable and enterprise-grade frontend features for BigFix(enterprise SaaS endpoint management platform) using React.js, JavaScript (ES6+), Material UI",
+        "Owned end-to-end delivery of frontend features, driving design and implementation of scalable solutions in collaboration with cross-functional teams. Led development of key frontend modules, ensuring scalability and maintainability across the application",
+        "Designed and implemented reusable, component-driven UI architecture and shared libraries, improving scalability, consistency, and development efficiency across modules.",
+        "Implemented accessibility improvements in line with WCAG 2.2 guidelines, enhancing usability for keyboard and screen reader users.",
+        "Leveraged Generative AI tools (ChatGPT, GitHub Copilot) for code generation, debugging, refactoring, documentation, and development workflow optimization, improving engineering productivity and delivery efficiency.",
+        "Built and enhanced complex, data-intensive interfaces by integrating RESTful APIs, enabling real-time visibility and control for large-scale endpoint environments.",
+        "Optimized application performance through state management, render optimization, and lazy loading, improving responsiveness and handling high-volume data efficiently.",
+        "Contributed to system design discussions focusing on scalability, modular architecture, and maintainability in a cloud SaaS environment."
+      ]
+    },
+    {
+      "organization": "Infosys Limited",
+      "role": "Technology Analyst",
+      "dates": "01/2021 – 07/2025",
+      "location": "Pune, India",
+      "bullets": [
+        "Engineered and maintained scalable web applications using React.js, JavaScript (ES6+), HTML/CSS and modern UI frameworks including Material UI and Tailwind CSS.",
+        "Architected and implemented reusable, component-driven UI systems, improving code maintainability and reducing development effort by ~20%.",
+        "Integrated RESTful APIs to enable real-time, data-driven interfaces, improving data refresh efficiency and reducing manual reload dependency.",
+        "Developed a self-service platform that streamlined issue resolution, contributing to an estimated 20–30% reduction in support tickets.",
+        "Designed and delivered a centralized dashboard for navigation, monitoring, and reporting, improving operational visibility and reducing access time by ~25%.",
+        "Improved application performance through state management and render optimization, enhancing UI responsiveness by ~15–20%."
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "label": "Frontend Development",
+      "text": "React.js, JavaScript (ES6+), HTML5, CSS3, Tailwind CSS, Bootstrap, Material UI"
+    },
+    {
+      "label": "State Management",
+      "text": "Redux, Zustand"
+    },
+    {
+      "label": "UI & UX Engineering",
+      "text": "WCAG 2.2, System Design, Component-Based Architecture, Reusable UI Systems, Micro-frontend Architecture"
+    },
+    {
+      "label": "AI-Driven Development",
+      "text": "ChatGPT, GitHub Copilot, Prompt Engineering, AI-Assisted Code Generation, AI-Assisted Debugging."
+    },
+    {
+      "label": "Performance Optimization",
+      "text": "Render Optimization, Memoization, Code Splitting, Lazy Loading"
+    },
+    {
+      "label": "Testing",
+      "text": "Jest, React Testing Library"
+    },
+    {
+      "label": "Backend Integration",
+      "text": "REST API Integration, Node.js, Express.js (Basics)"
+    },
+    {
+      "label": "CI/CD & Tools",
+      "text": "GitHub Actions, Git, GitHub, Postman"
+    }
+  ],
+  "projects": [
+    {
+      "name": "Income Tax Calculator",
+      "url": "https://calculate-tax-nine.vercel.app/",
+      "bullets": [
+        "Built an income tax calculator supporting Old vs New regime comparison with dynamic graphs, improving financial planning usability",
+        "Technologies - React, JavaScript, Redux, Tailwind."
+      ]
+    },
+    {
+      "name": "Swiggy Clone",
+      "url": "https://github.com/approton/zaikadham",
+      "bullets": [
+        "Built a food delivery UI clone and implemented basic unit tests using Jest, gaining hands-on experience in component testing",
+        "Technologies - React, Redux, JavaScript, TailwindCSS, Bootstrap."
+      ]
+    },
+    {
+      "name": "Approton Social",
+      "url": "https://approton.pythonanywhere.com",
+      "bullets": [
+        "Personal project which provides a Collaborative Environment where people can post their ideas, create groups and connect to each other.",
+        "Technologies: React.js, JavaScript, Node.js, Express.js, Git, Github."
+      ]
+    },
+    {
+      "name": "DNS & SSL Lookup Tool",
+      "url": "https://codechef.pythonanywhere.com",
+      "bullets": [
+        "Personal project which Provides a tool where people can lookup the DNS response on public network and SSL certificates.",
+        "Technologies: React.js, JavaScript, Bootstrap, Django"
+      ]
+    }
+  ],
+  "awards": [
+    {
+      "name": "STAR PERFORMER, Infosys",
+      "bullets": ["Was Awarded with Star Performer in Team for Best Team Player and Employee."]
+    },
+    {
+      "name": "Insta Award, Infosys",
+      "bullets": ["I got this Award 3 times in Infosys for best Team player and Deadline Defender."]
+    }
+  ],
+  "education": [
+    {
+      "name": "Bachelor Of Technology, Computer Science and Engineering Babu Banarasi Das Engineering College",
+      "dates": "08/2016 – 06/2020",
+      "location": "Lucknow, India",
+      "bullets": [
+        "Completed in Computer Science and Engineering with honors and aggregate of 78.4%."
+      ]
+    },
+    {
+      "name": "Higher Secondary Certificate(Intermediate)- CBSE, Saraswati Sr. Sec. Vidya Mandir",
+      "dates": "07/2014 – 05/2015",
+      "location": "Deoria, India",
+      "bullets": ["Completed intermediate in Science with Aggregate of 72.8%"]
+    },
+    {
+      "name": "Senior Secondary certificate(High School)- CBSE, Saraswati Sr. Sec. Vidya Mandir",
+      "dates": "04/2012 – 05/2013",
+      "location": "Deoria, India",
+      "bullets": ["Completed my High School with Aggregate of 9.8 CGPA"]
+    }
+  ],
+  "certificates": [
+    "JavaScript Developer: Infosys",
+    "Frontend Developer: Infosys",
+    "GenAI Enthusiast: HCLSoftware",
+    "MERN Stack Web Developer: Udemy",
+    "Python Developer: Infoseek, Lucknow"
+  ],
+  "languages": ["English", "Hindi"]
+}

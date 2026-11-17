@@ -36,6 +36,7 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 140px;
+  overscroll-behavior-y: none;
 }
 body {
   margin: 0;

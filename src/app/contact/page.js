@@ -1,4 +1,9 @@
-import QuoteCloud from '@/components/QuoteCloud/QuoteCloud';
+import PortfolioChat from '@/components/PortfolioChat/PortfolioChat';
+import { buildKnowledge } from '@/components/PortfolioChat/knowledge.mjs';
+import resume from '@/data/resume.json';
+import { projects, expertise } from '@/data/profile';
+import { services } from '@/data/services';
+import { getExperience } from '@/lib/experience.mjs';
 import ContactForm from '@/components/ContactForm/ContactForm';
 import ContactActions, { SocialLinks } from '@/components/ContactActions/ContactActions';
 import Icon from '@/components/Icon/Icon';
@@ -24,9 +29,12 @@ export default function Contact() {
             on your mind.
           </p>
         </div>
-        <QuoteCloud />
+        <PortfolioChat
+          initialExperience={getExperience()}
+          knowledge={buildKnowledge(resume, projects, expertise, services)}
+        />
       </section>
-      <section className="section contactSection contactPage">
+      <section id="contact-message" className="section contactSection contactPage">
         <div>
           <span className="availability">
             <span className="statusDot" /> OPEN TO MEANINGFUL OPPORTUNITIES

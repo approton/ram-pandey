@@ -196,7 +196,7 @@
 .textarea:focus {
   background: color-mix(in srgb, var(--accent) 10%, transparent);
   border-color: var(--accent);
-  outline: 2px solid color-mix(in srgb, var(--accent2) 70%, transparent);
+  outline: none;
   outline-offset: 2px;
 }
 .active .number {
